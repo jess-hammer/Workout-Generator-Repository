@@ -13,19 +13,19 @@ public class Generator : MonoBehaviour
 	public BaseExercise [] exerciseLineup;
 	private Exercises exerciseClass;
 	private int index = 0;
-	public Text textBox;
+	public Text textbox;
+	public Text nextTextbox;
 	public Timer timer;
 
 	// Start is called before the first frame update
-	void Start()
-    {
+	void Start() {
 		exerciseClass = new Exercises ();
-		textBox = this.GetComponent<Text> ();
+		textbox.text = "";
+		nextTextbox.text = "";
 	}
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 		
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			index = 0;
@@ -42,7 +42,13 @@ public class Generator : MonoBehaviour
 	public void runWorkout ()
 	{
 		if (timer.isZero() && index != exerciseLineup.Length) {
-			textBox.text = exerciseLineup [index].name;
+			textbox.text = exerciseLineup [index].name;
+			if (index < exerciseLineup.Length - 1) {
+				nextTextbox.text = "Next up:  " + exerciseLineup [index + 1].name;
+			} else {
+				nextTextbox.text = "";
+			}
+			
 			timer.setTimer (exerciseLineup [index].timerLengthMinutes,
 				exerciseLineup [index].timerLengthSeconds);
 			index++;
@@ -92,9 +98,11 @@ public class Generator : MonoBehaviour
 	// prints exercises to the log for debug purposes
 	public void printExercises (BaseExercise [] array)
 	{
+		string str = "";
 		for (int i = 0; i < array.Length; i++) {
-			Debug.Log (array [i].name);
+			str += array [i].name + ", ";
 		}
+		Debug.Log (str);
 	}
 }
 

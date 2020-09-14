@@ -10,11 +10,13 @@ public class Exercises
 	public Exercises()
 	{
 		exercises = new List<BaseExercise> ();
-		exercises.Add (new BaseExercise("Push-ups", 4, 0, 5));
+		exercises.Add (new BaseExercise ("Push-ups", 4, 0, 5));
 		exercises.Add (new BaseExercise ("Crunches", 2, 0, 10));
 		exercises.Add (new BaseExercise ("Squats", 2, 0, 6));
 		exercises.Add (new BaseExercise ("Lunges", 3, 0, 3));
 		exercises.Add (new BaseExercise ("Deadlifts", 3, 0, 10));
+		exercises.Add (new BaseExercise ("Leg lifts", 2, 0, 3));
+		exercises.Add (new BaseExercise ("Calf raises", 2, 0, 3));
 	}
 }
 
