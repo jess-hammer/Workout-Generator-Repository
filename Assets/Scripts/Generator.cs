@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Generator : MonoBehaviour
 {
@@ -9,21 +11,43 @@ public class Generator : MonoBehaviour
 	public static UserPrefs userPrefs;
 	public static List<BaseExercise> exerciseSelection;
 	public BaseExercise [] exerciseLineup;
+	private Exercises exerciseClass;
+	private int index = 0;
+	public Text textBox;
+	public Timer timer;
 
 	// Start is called before the first frame update
 	void Start()
     {
-    }
+		exerciseClass = new Exercises ();
+		textBox = this.GetComponent<Text> ();
+	}
 
     // Update is called once per frame
     void Update()
     {
+		
 		if (Input.GetKeyDown (KeyCode.Space)) {
+			index = 0;
 			exerciseLineup = CreateWorkout ();
 			printExercises (exerciseLineup);
 		}
+
+		if (exerciseLineup.Length > 0) {
+			runWorkout ();
+		}
+		
 	}
 
+	public void runWorkout ()
+	{
+		if (timer.isZero() && index != exerciseLineup.Length) {
+			textBox.text = exerciseLineup [index].name;
+			timer.setTimer (exerciseLineup [index].timerLengthMinutes,
+				exerciseLineup [index].timerLengthSeconds);
+			index++;
+		}
+	}
 	
 	// returns an array of excercises in random order
 	public BaseExercise [] CreateWorkout ()

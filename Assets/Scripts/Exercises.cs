@@ -3,19 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Exercises : MonoBehaviour
+public class Exercises
 {
 	public static List<BaseExercise> exercises;
 
 	public Exercises()
 	{
 		exercises = new List<BaseExercise> ();
-		exercises.Add (new BaseExercise("Push-ups", 4, 0, 30));
-		exercises.Add (new BaseExercise ("Crunches", 2, 0, 50));
-		exercises.Add (new BaseExercise ("Squats", 2, 0, 50));
-		exercises.Add (new BaseExercise ("Lunges", 3, 0, 30));
-		exercises.Add (new BaseExercise ("Deadlifts", 3, 0, 30));
-
+		exercises.Add (new BaseExercise("Push-ups", 4, 0, 5));
+		exercises.Add (new BaseExercise ("Crunches", 2, 0, 10));
+		exercises.Add (new BaseExercise ("Squats", 2, 0, 6));
+		exercises.Add (new BaseExercise ("Lunges", 3, 0, 3));
+		exercises.Add (new BaseExercise ("Deadlifts", 3, 0, 10));
 	}
 }
 
