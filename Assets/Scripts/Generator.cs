@@ -7,51 +7,46 @@ public class Generator : MonoBehaviour
 {
 	public int seed;
 	public static UserPrefs userPrefs;
-	public static List<BaseExcerciseClass> excerciseLineup;
-	public BaseExcerciseClass [] shuffledLineup;
-	private Excercises exClass;
+	public static List<BaseExercise> exerciseSelection;
+	public BaseExercise [] exerciseLineup;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		exClass = GetComponent<Excercises> ();
     }
 
     // Update is called once per frame
     void Update()
     {
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			shuffledLineup = CreateWorkout ();
-			printEx (shuffledLineup);
-		}
-
-	}
-
-	public void printEx(BaseExcerciseClass [] array)
-	{
-		for (int i = 0; i < array.Length; i++) {
-			Debug.Log (array[i].name);
+			exerciseLineup = CreateWorkout ();
+			printExercises (exerciseLineup);
 		}
 	}
 
-	public BaseExcerciseClass [] CreateWorkout ()
+	
+	// returns an array of excercises in random order
+	public BaseExercise [] CreateWorkout ()
 	{
 		seed = (int)UnityEngine.Random.Range (-10000, 10000);
 		UnityEngine.Random.InitState (seed);
+		exerciseSelection = new List<BaseExercise>();
 
-		foreach (BaseExcerciseClass ex in exClass.excercises) {
+		// select exercise that align with the user prefs
+		foreach (BaseExercise ex in Exercises.exercises) {
 			if (alignment(ex)) {
-				excerciseLineup.Add (ex);
+				exerciseSelection.Add (ex);
 			}
 		}
 
-		var exArray = excerciseLineup.ToArray ();
+		// convert to array and shuffle the order
+		var exArray = exerciseSelection.ToArray ();
 		ShuffleArray (exArray);
-
 		return exArray;
 	}
 
-	public bool alignment(BaseExcerciseClass ex)
+	// returns true if exercise matches the user prefs
+	public bool alignment(BaseExercise exercise)
 	{
 		return true;
 	}
@@ -67,6 +62,14 @@ public class Generator : MonoBehaviour
 			T t = array [r];
 			array [r] = array [i];
 			array [i] = t;
+		}
+	}
+
+	// prints exercises to the log for debug purposes
+	public void printExercises (BaseExercise [] array)
+	{
+		for (int i = 0; i < array.Length; i++) {
+			Debug.Log (array [i].name);
 		}
 	}
 }

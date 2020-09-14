@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 2118847464}
   - component: {fileID: 2118847463}
   - component: {fileID: 2118847462}
+  - component: {fileID: 2118847465}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -511,6 +512,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50818af9d332c465f8008cf6c37fc768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  excercises:
+  - name: Push-ups
+    difficulty: 0
+    isWithoutGear: 0
+    isCardio: 0
+    isStrengthTraining: 0
+    isStretch: 0
+    isUpper: 0
+    isMiddle: 0
+    isLower: 0
+    timerLengthMinutes: 0
+    timerLengthSeconds: 0
+    timerRestLength: 0
+    timerRepeats: 0
+  - name: Crunches
+    difficulty: 0
+    isWithoutGear: 0
+    isCardio: 0
+    isStrengthTraining: 0
+    isStretch: 0
+    isUpper: 0
+    isMiddle: 0
+    isLower: 0
+    timerLengthMinutes: 0
+    timerLengthSeconds: 0
+    timerRestLength: 0
+    timerRepeats: 0
+  - name: Squats
+    difficulty: 0
+    isWithoutGear: 0
+    isCardio: 0
+    isStrengthTraining: 0
+    isStretch: 0
+    isUpper: 0
+    isMiddle: 0
+    isLower: 0
+    timerLengthMinutes: 0
+    timerLengthSeconds: 0
+    timerRestLength: 0
+    timerRepeats: 0
+  - name: Deadlifts
+    difficulty: 0
+    isWithoutGear: 0
+    isCardio: 0
+    isStrengthTraining: 0
+    isStretch: 0
+    isUpper: 0
+    isMiddle: 0
+    isLower: 0
+    timerLengthMinutes: 0
+    timerLengthSeconds: 0
+    timerRestLength: 0
+    timerRepeats: 0
+  - name: Lunges
+    difficulty: 0
+    isWithoutGear: 0
+    isCardio: 0
+    isStrengthTraining: 0
+    isStretch: 0
+    isUpper: 0
+    isMiddle: 0
+    isLower: 0
+    timerLengthMinutes: 0
+    timerLengthSeconds: 0
+    timerRestLength: 0
+    timerRepeats: 0
 --- !u!114 &2118847463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,3 +619,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118847460}
   m_CullTransparentMesh: 0
+--- !u!114 &2118847465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118847460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebce31b31e57404289ee014d705c7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: 0
+  shuffledLineup: []
