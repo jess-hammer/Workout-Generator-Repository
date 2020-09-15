@@ -10,13 +10,13 @@ public class Exercises
 	public Exercises()
 	{
 		exercises = new List<BaseExercise> ();
-		exercises.Add (new BaseExercise ("Push-ups", 4, 0, 5));
-		exercises.Add (new BaseExercise ("Crunches", 2, 0, 10));
-		exercises.Add (new BaseExercise ("Squats", 2, 0, 6));
-		exercises.Add (new BaseExercise ("Lunges", 3, 0, 3));
-		exercises.Add (new BaseExercise ("Deadlifts", 3, 0, 10));
-		exercises.Add (new BaseExercise ("Leg lifts", 2, 0, 3));
-		exercises.Add (new BaseExercise ("Calf raises", 2, 0, 3));
+		exercises.Add (new BaseExercise ("Push-ups", 4, 5, 3));
+		exercises.Add (new BaseExercise ("Crunches", 2, 10, 3));
+		exercises.Add (new BaseExercise ("Squats", 2, 6, 3));
+		exercises.Add (new BaseExercise ("Lunges", 3, 3, 3));
+		exercises.Add (new BaseExercise ("Deadlifts", 3, 10, 3));
+		exercises.Add (new BaseExercise ("Leg lifts", 2, 3, 3));
+		exercises.Add (new BaseExercise ("Calf raises", 2, 3, 3));
 	}
 }
 
@@ -38,16 +38,14 @@ public class BaseExercise {
 	public bool isLower;
 
 	// layout
-	public int timerLengthMinutes;
-	public int timerLengthSeconds;
-	public int timerRestLength;
-	public int timerRepeats;
+	public int length;
+	public int restLength;
+	public int repeats;
 
-	public BaseExercise(string name, int difficulty, int timerLengthMinutes, int timerLengthSeconds)
-	{
+	public BaseExercise(string name, int difficulty, int length, int restLength) {
 		this.name = name;
 		this.difficulty = difficulty;
-		this.timerLengthMinutes = timerLengthMinutes;
-		this.timerLengthSeconds = timerLengthSeconds;
+		this.length = length;
+		this.restLength = restLength;
 	}
 }

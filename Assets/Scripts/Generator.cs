@@ -7,54 +7,33 @@ using UnityEngine.UI;
 
 public class Generator : MonoBehaviour
 {
-	public int seed;
+	public static int seed;
 	public static UserPrefs userPrefs;
 	public static List<BaseExercise> exerciseSelection;
-	public BaseExercise [] exerciseLineup;
-	private Exercises exerciseClass;
-	private int index = 0;
-	public Text textbox;
-	public Text nextTextbox;
-	public Timer timer;
-
+	public static BaseExercise [] exercises;
+	public static Exercises exerciseClass;
+	
+	
 	// Start is called before the first frame update
 	void Start() {
 		exerciseClass = new Exercises ();
-		textbox.text = "";
-		nextTextbox.text = "";
+		exerciseSelection = new List<BaseExercise> ();
+		exercises = new BaseExercise [0];
 	}
 
     // Update is called once per frame
     void Update() {
 		
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			index = 0;
-			exerciseLineup = CreateWorkout ();
-			printExercises (exerciseLineup);
-		}
-
-		if (exerciseLineup.Length > 0) {
-			runWorkout ();
-		}
-		
-	}
-
-	public void runWorkout ()
-	{
-		if (timer.isZero() && index != exerciseLineup.Length) {
-			textbox.text = exerciseLineup [index].name;
-			if (index < exerciseLineup.Length - 1) {
-				nextTextbox.text = "Next up:  " + exerciseLineup [index + 1].name;
-			} else {
-				nextTextbox.text = "";
+			ImplementWorkout.index = 0;
+			exercises = CreateWorkout ();
+			if (exercises.Length > 0) {
+				ImplementWorkout.isGenerated = true;
 			}
-			
-			timer.setTimer (exerciseLineup [index].timerLengthMinutes,
-				exerciseLineup [index].timerLengthSeconds);
-			index++;
+			printExercises (exercises);
 		}
 	}
-	
+
 	// returns an array of excercises in random order
 	public BaseExercise [] CreateWorkout ()
 	{
@@ -104,14 +83,4 @@ public class Generator : MonoBehaviour
 		}
 		Debug.Log (str);
 	}
-}
-
-[Serializable]
-public class UserPrefs {
-	public int durationMin;
-	public int difficulty;
-
-	public bool upperFocus;
-	public bool coreFocus;
-	public bool bottomFocus;
 }
