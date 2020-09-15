@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class UserPrefs : MonoBehaviour
 {
-	public static UserPref prefs;
+	public static UserPref prefs = new UserPref();
+
 
     // Start is called before the first frame update
     void Start()
     {
-		prefs = new UserPref ();
+
     }
 
     // Update is called once per frame
