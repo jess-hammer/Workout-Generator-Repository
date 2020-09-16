@@ -91,7 +91,7 @@ public class BaseExercise {
 		this.restLength = restLength;
 
 		this.isUpper = focus [0];
-		this.isMiddle = focus [2];
-		this.isLower = focus [3];
+		this.isMiddle = focus [1];
+		this.isLower = focus [2];
 	}
 }

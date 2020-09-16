@@ -26,6 +26,13 @@ public class ImplementWorkout : MonoBehaviour
 		runWorkout ();
 	}
 
+	public void skipWorkout()
+	{
+		timer.setTimer (0, 0);
+		isRest = false;
+		index++;
+	}
+
 	public void runWorkout ()
 	{
 		if (timer.isZero () && index != Generator.exercises.Length) {

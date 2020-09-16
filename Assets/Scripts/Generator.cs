@@ -21,11 +21,30 @@ public static class Generator
 		UnityEngine.Random.InitState (seed);
 		exerciseSelection = new List<BaseExercise>();
 
+		int timeLeft = UserPrefs.durationMin * 60; //converted to seconds
+		Debug.Log (timeLeft);
+
+		// convert options to array cuz idk how to work with lists
+		BaseExercise [] options = Exercises.exercises.ToArray ();
+		int i = 0;
+
+		if (options.Length == 0) {
+			Debug.Log ("Something went wrong here");
+		}
+
 		// select exercise that align with the user prefs
-		foreach (BaseExercise ex in Exercises.exercises) {
-			if (alignment(ex)) {
-				exerciseSelection.Add (ex);
+		while (timeLeft > 0) {
+			if (alignment(options[i])) {
+				exerciseSelection.Add (options[i]);
+				timeLeft -= (options [i].length + options [i].restLength);
 			}
+
+			if (i == options.Length - 1) {
+				i = -1;
+			}
+
+			i++;
+			
 		}
 
 		// convert to array and shuffle the order
@@ -43,9 +62,9 @@ public static class Generator
 	{
 		if (!(exercise.difficulty == UserPrefs.difficulty ||
 			exercise.difficulty == UserPrefs.difficulty - 1)) { return false; }
-		if (exercise.isUpper != UserPrefs.upperFocus) { return false; }
-		if (exercise.isMiddle != UserPrefs.middleFocus) { return false; }
-		if (exercise.isLower != UserPrefs.lowerFocus) { return false; }
+		if (!(exercise.isUpper == UserPrefs.upperFocus ||
+			exercise.isMiddle == UserPrefs.middleFocus ||
+			exercise.isLower == UserPrefs.lowerFocus)) { return false; }
 		return true;
 	}
 
