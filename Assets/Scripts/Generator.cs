@@ -5,37 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Generator : MonoBehaviour
+public static class Generator
 {
 	public static int seed;
-	public static List<BaseExercise> exerciseSelection;
-	public static BaseExercise [] exercises;
-	public static Exercises exerciseClass;
+	public static List<BaseExercise> exerciseSelection = new List<BaseExercise> ();
+	public static BaseExercise [] exercises = new BaseExercise [0];
+	public static Exercises exerciseClass = new Exercises ();
 	
-	
-	// Start is called before the first frame update
-	void Start() {
-		exerciseClass = new Exercises ();
-		exerciseSelection = new List<BaseExercise> ();
-		exercises = new BaseExercise [0];
-	}
-
-    // Update is called once per frame
-    void Update() {
-		
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			ImplementWorkout.index = 0;
-			exercises = CreateWorkout ();
-			if (exercises.Length > 0) {
-				ImplementWorkout.isGenerated = true;
-			}
-			printExercises (exercises);
-		}
-	}
 
 	// returns an array of excercises in random order
-	public BaseExercise [] CreateWorkout ()
+	public static void CreateWorkout ()
 	{
+		ImplementWorkout.index = 0;
 		seed = (int)UnityEngine.Random.Range (-10000, 10000);
 		UnityEngine.Random.InitState (seed);
 		exerciseSelection = new List<BaseExercise>();
@@ -50,16 +31,20 @@ public class Generator : MonoBehaviour
 		// convert to array and shuffle the order
 		var exArray = exerciseSelection.ToArray ();
 		ShuffleArray (exArray);
-		return exArray;
+		exercises = exArray;
+
+		if (exercises.Length > 0) {
+			ImplementWorkout.isGenerated = true;
+		}
 	}
 
 	// returns true if exercise matches the user prefs
-	public bool alignment(BaseExercise exercise)
+	public static bool alignment(BaseExercise exercise)
 	{
 		return true;
 	}
 
-	void ShuffleArray<T> (T [] array)
+	static void ShuffleArray<T> (T [] array)
 	{
 		int n = array.Length;
 		for (int i = 0; i < n; i++) {
@@ -74,12 +59,22 @@ public class Generator : MonoBehaviour
 	}
 
 	// prints exercises to the log for debug purposes
-	public void printExercises (BaseExercise [] array)
+	public static void printExercises (BaseExercise [] array)
 	{
 		string str = "";
 		for (int i = 0; i < array.Length; i++) {
 			str += array [i].name + ", ";
 		}
 		Debug.Log (str);
+	}
+
+	public static string toString ()
+	{
+		string str = "";
+		int n = exercises.Length;
+		for (int i = 0; i < n; i++) {
+			str += "\t" + (i + 1) + ". " + exercises [i].name + "...." + exercises [i].length + " sec\n";
+		}
+		return str;
 	}
 }

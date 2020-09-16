@@ -9,9 +9,31 @@ public class OnValueChangedText : MonoBehaviour
 	public Text duration;
 	public Text difficulty;
 
+	[Space]
+	public Slider durationSlider;
+	public Slider difficultySlider;
+
+	[Space]
+	public Toggle upperToggle;
+	public Toggle middleToggle;
+	public Toggle lowerToggle;
+
 	private void Start ()
 	{
-		//ValueText = GetComponent<Text> ();
+		resetDisplay ();
+
+	}
+
+	public void resetDisplay()
+	{
+		duration.text = "Duration: " + UserPrefs.durationMin + " min";
+		difficulty.text = "Difficulty: " + UserPrefs.difficulty;
+		durationSlider.value = UserPrefs.durationMin;
+		difficultySlider.value = UserPrefs.difficulty;
+
+		upperToggle.isOn = UserPrefs.upperFocus;
+		middleToggle.isOn = UserPrefs.middleFocus;
+		lowerToggle.isOn = UserPrefs.lowerFocus;
 	}
 
 	public void DurationSliderValueChanged (float value)

@@ -9,4 +9,14 @@ public class ChangeScene : MonoBehaviour
 	{
 		SceneManager.LoadScene ("MainScreen", LoadSceneMode.Single);
 	}
+
+	public void GotoOverview ()
+	{
+		SceneManager.LoadScene ("Overview", LoadSceneMode.Single);
+	}
+
+	public void GotoMenu ()
+	{
+		SceneManager.LoadScene ("Menu", LoadSceneMode.Single);
+	}
 }
