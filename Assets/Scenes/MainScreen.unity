@@ -693,7 +693,6 @@ GameObject:
   - component: {fileID: 2118847461}
   - component: {fileID: 2118847464}
   - component: {fileID: 2118847463}
-  - component: {fileID: 2118847465}
   - component: {fileID: 2118847462}
   m_Layer: 5
   m_Name: CurrentExercise
@@ -779,18 +778,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118847460}
   m_CullTransparentMesh: 0
---- !u!114 &2118847465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118847460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebce31b31e57404289ee014d705c7e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &4057861435588480259
 SpriteRenderer:
   m_ObjectHideFlags: 0

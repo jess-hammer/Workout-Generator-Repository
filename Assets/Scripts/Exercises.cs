@@ -10,13 +10,55 @@ public class Exercises
 	public Exercises()
 	{
 		exercises = new List<BaseExercise> ();
-		exercises.Add (new BaseExercise ("Push-ups", 4, 5, 3));
-		exercises.Add (new BaseExercise ("Crunches", 2, 10, 3));
-		exercises.Add (new BaseExercise ("Squats", 2, 6, 3));
-		exercises.Add (new BaseExercise ("Lunges", 3, 3, 3));
-		exercises.Add (new BaseExercise ("Deadlifts", 3, 10, 3));
-		exercises.Add (new BaseExercise ("Leg lifts", 2, 3, 3));
-		exercises.Add (new BaseExercise ("Calf raises", 2, 3, 3));
+		bool [] focus = new bool [3];
+
+		// UPPER
+		focus [0] = true;
+		focus [1] = false;
+		focus [2] = false;
+		exercises.Add (new BaseExercise ("Push-ups", 4, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Pull-ups", 5, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Bicep curls", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Tricep dips", 4, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Skull crushers", 5, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Chest press", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Reverse fly", 4, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Lateral raises", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Chest fly", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Shoulder press", 3, 20, 10, focus));
+
+
+		// MIDDLE
+		focus [0] = false;
+		focus [1] = true;
+		focus [2] = false;
+		exercises.Add (new BaseExercise ("Crunches", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Bicycle crunches", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Plank", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Mountain climbers", 5, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Oblique crunches", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Jackknife crunches", 4, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Leg raises", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Plank taps", 4, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Hip dips", 3, 20, 10, focus));
+
+
+		// LOWER
+		focus [0] = false;
+		focus [1] = false;
+		focus [2] = true;
+		exercises.Add (new BaseExercise ("Squats", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Sumo squats", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Ski squats", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Lunges", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Curtsey lunges", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Side lunges", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Deadlifts", 3, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Sidewards leg raises", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Reverse leg raises", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Calf raises", 2, 20, 10, focus));
+		exercises.Add (new BaseExercise ("Bridges", 3, 20, 10, focus));
+
 	}
 }
 
@@ -42,10 +84,14 @@ public class BaseExercise {
 	public int restLength;
 	public int repeats;
 
-	public BaseExercise(string name, int difficulty, int length, int restLength) {
+	public BaseExercise(string name, int difficulty, int length, int restLength, bool [] focus) {
 		this.name = name;
 		this.difficulty = difficulty;
 		this.length = length;
 		this.restLength = restLength;
+
+		this.isUpper = focus [0];
+		this.isMiddle = focus [2];
+		this.isLower = focus [3];
 	}
 }
