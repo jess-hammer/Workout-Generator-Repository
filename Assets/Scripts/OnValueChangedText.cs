@@ -8,17 +8,36 @@ public class OnValueChangedText : MonoBehaviour
 	//private Text ValueText;
 	public Text duration;
 	public Text difficulty;
-	public Toggle upperFocus;
-	public Toggle middleFocus;
-	public Toggle lowerFocus;
 
 	private void Start ()
 	{
 		//ValueText = GetComponent<Text> ();
 	}
 
-	public void OnSliderValueChanged (float value)
+	public void DurationSliderValueChanged (float value)
 	{
-		//ValueText.text = value.ToString ("0.00");
+		duration.text = "Duration: " + value.ToString () + " min";
+		UserPrefs.durationMin = (int)value;
+	}
+
+	public void DifficultySliderValueChanged (float value)
+	{
+		difficulty.text = "Difficulty: " + value.ToString ();
+		UserPrefs.difficulty = (int)value;
+	}
+
+	public void UpperToggle (bool isOn)
+	{
+		UserPrefs.upperFocus = isOn;
+	}
+
+	public void MiddleToggle (bool isOn)
+	{
+		UserPrefs.middleFocus = isOn;
+	}
+
+	public void LowerToggle (bool isOn)
+	{
+		UserPrefs.lowerFocus = isOn;
 	}
 }

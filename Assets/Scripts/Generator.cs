@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Generator : MonoBehaviour
 {
 	public static int seed;
-	public static UserPrefs userPrefs;
 	public static List<BaseExercise> exerciseSelection;
 	public static BaseExercise [] exercises;
 	public static Exercises exerciseClass;
