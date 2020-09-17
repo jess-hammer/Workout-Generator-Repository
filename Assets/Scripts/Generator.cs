@@ -60,12 +60,21 @@ public static class Generator
 	// returns true if exercise matches the user prefs
 	public static bool alignment(BaseExercise exercise)
 	{
+		// check difficulty
 		if (!(exercise.difficulty == UserPrefs.difficulty ||
 			exercise.difficulty == UserPrefs.difficulty - 1)) { return false; }
-		if (!(exercise.isUpper == UserPrefs.upperFocus ||
-			exercise.isMiddle == UserPrefs.middleFocus ||
-			exercise.isLower == UserPrefs.lowerFocus)) { return false; }
-		return true;
+
+		// check body focus
+		if (UserPrefs.upperFocus && exercise.isUpper) {
+			return true;
+		} else if (UserPrefs.middleFocus && exercise.isMiddle) {
+			return true;
+		} else if (UserPrefs.lowerFocus && exercise.isLower) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	static void ShuffleArray<T> (T [] array)
