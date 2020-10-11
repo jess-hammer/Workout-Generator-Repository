@@ -2380,12 +2380,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: {fileID: 1488823896}
   duration: {fileID: 332704122}
-  warmup: {fileID: 0}
-  cooldown: {fileID: 0}
+  warmup: {fileID: 134786379}
+  cooldown: {fileID: 704660798}
   difficultySlider: {fileID: 1543553989}
   durationSlider: {fileID: 1711887260}
-  warmupSlider: {fileID: 0}
-  cooldownSlider: {fileID: 0}
+  warmupSlider: {fileID: 1768757327}
+  cooldownSlider: {fileID: 1284448885}
   upperToggle: {fileID: 1336417415}
   middleToggle: {fileID: 1277121234}
   lowerToggle: {fileID: 1447871230}
