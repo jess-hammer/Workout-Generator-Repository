@@ -21,11 +21,11 @@ public static class Generator
 		UnityEngine.Random.InitState (seed);
 		exerciseSelection = new List<BaseExercise>();
 
-		int timeLeft = UserPrefs.durationMin * 60; //converted to seconds
+		int timeLeft = UserPrefs.duration  * 60; //converted to seconds
 		Debug.Log (timeLeft);
 
 		// convert options to array cuz idk how to work with lists
-		BaseExercise [] options = Exercises.exercises.ToArray ();
+		BaseExercise [] options = Exercises.exercises;
 		int i = 0;
 
 		if (options.Length == 0) {
@@ -77,7 +77,7 @@ public static class Generator
 
 	}
 
-	static void ShuffleArray<T> (T [] array)
+	public static void ShuffleArray<T> (T [] array)
 	{
 		int n = array.Length;
 		for (int i = 0; i < n; i++) {
