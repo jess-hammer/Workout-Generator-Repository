@@ -558,7 +558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.404, y: 21.17}
+  m_AnchoredPosition: {x: 0.5, y: 21.6}
   m_SizeDelta: {x: 64.83039, y: 538.5992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1506547478
@@ -574,7 +574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalTimeLeft: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0.5, y: 3.67, z: 0}
+  workout: {fileID: 2118847462}
 --- !u!114 &1506547479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,9 +1049,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRest: 0
+  index: 0
   textbox: {fileID: 2118847463}
   nextTextbox: {fileID: 330123094}
   timer: {fileID: 1580864975}
+  timeLeft: 0
 --- !u!114 &2118847463
 MonoBehaviour:
   m_ObjectHideFlags: 0

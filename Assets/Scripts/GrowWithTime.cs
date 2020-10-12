@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class GrowWithTime : MonoBehaviour
 {
-	[SerializeField]
-	private float totalTimeLeft;
-
 	[Space]
 	public Vector3 targetPos;
-	private Vector3 pos;
+	public ImplementWorkout workout;
+	private Vector3 startPos;
+	private float dist;
 
     // Start is called before the first frame update
     void Start()
     {
-		//totalTimeLeft = UserPrefs.durationMin * 60;
-		pos = this.transform.position;
+		startPos = this.transform.position;
+		dist = Mathf.Abs(targetPos.y - startPos.y);
     }
 
     // Update is called once per frame
     void Update()
     {
-		//pos = this.transform.position;
-		pos.y -= (pos.y - targetPos.y) / totalTimeLeft;
+		float timeElapsed = Generator.totalTimeLength - Generator.totalTimeLeft;
+		Vector3 pos = this.transform.position;
+		Debug.Log ("%: " + timeElapsed / Generator.totalTimeLength);
+		pos.y = startPos.y - dist * (timeElapsed/Generator.totalTimeLength);
 		transform.position = pos;
-		totalTimeLeft -= Time.deltaTime;
     }
 }

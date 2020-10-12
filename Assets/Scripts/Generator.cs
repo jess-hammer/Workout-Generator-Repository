@@ -7,54 +7,45 @@ using UnityEngine.UI;
 
 public static class Generator
 {
-	public static int seed;
-	public static List<BaseExercise> exerciseSelection = new List<BaseExercise> ();
 	public static BaseExercise [] exercises = new BaseExercise [0];
-	public static Exercises exerciseClass = new Exercises ();
-	
+	public static float totalTimeLength = 0;
+	public static float totalTimeLeft = 0;
 
 	// returns an array of excercises in random order
 	public static void CreateWorkout ()
 	{
-		ImplementWorkout.index = 0;
-		seed = (int)UnityEngine.Random.Range (-10000, 10000);
-		UnityEngine.Random.InitState (seed);
-		exerciseSelection = new List<BaseExercise>();
-
+		// initalise variables
+		List<BaseExercise> exerciseSelection = new List<BaseExercise> ();
 		int timeLeft = UserPrefs.duration  * 60; //converted to seconds
-		Debug.Log (timeLeft);
-
-		// convert options to array cuz idk how to work with lists
-		BaseExercise [] options = Exercises.exercises;
+		BaseExercise [] options = Exercises.generateAllExerciseList();
 		int i = 0;
 
+		// safeguard
 		if (options.Length == 0) {
-			Debug.Log ("Something went wrong here");
+			Debug.Log ("Error - there are no options to choose from");
 		}
 
 		// select exercise that align with the user prefs
 		while (timeLeft > 0) {
 			if (alignment(options[i])) {
 				exerciseSelection.Add (options[i]);
-				timeLeft -= (options [i].length + options [i].restLength);
+				int amount = options [i].length + options [i].restLength;
+				timeLeft -= amount;
+				totalTimeLength += amount + 2;
 			}
 
+			// loop back around
 			if (i == options.Length - 1) {
 				i = -1;
 			}
-
 			i++;
-			
 		}
 
 		// convert to array and shuffle the order
 		var exArray = exerciseSelection.ToArray ();
-		ShuffleArray (exArray);
+		ShuffleArray (exArray); // not sure if really need to reshuffle
 		exercises = exArray;
-
-		if (exercises.Length > 0) {
-			ImplementWorkout.isGenerated = true;
-		}
+		totalTimeLeft = totalTimeLength;
 	}
 
 	// returns true if exercise matches the user prefs

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // Attach me to the textbox you want to display the timer!
 public class Timer : MonoBehaviour
 {
-	private float timeLeft = 0; // in seconds
+	public float timeLeft = 0; // in seconds
 	public Text textBox;
 	private int prevMin;
 	private int prevSec;

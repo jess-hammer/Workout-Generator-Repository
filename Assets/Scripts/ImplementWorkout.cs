@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class ImplementWorkout : MonoBehaviour
 {
-	public static bool isGenerated = false;
 	public bool isRest = false;
-	public static int index = 0;
+	public int index = 0;
 
 	public Text textbox;
 	public Text nextTextbox;
@@ -24,10 +23,16 @@ public class ImplementWorkout : MonoBehaviour
     void Update()
     {
 		runWorkout ();
+		Generator.totalTimeLeft -= Time.deltaTime;
 	}
 
 	public void skipWorkout()
 	{
+		Generator.totalTimeLeft -= timer.timeLeft + 1;
+		if (isRest == false && index < Generator.exercises.Length) {
+			Generator.totalTimeLeft -= Generator.exercises [index].restLength + 1;
+		}
+
 		timer.setTimer (0, 0);
 		isRest = false;
 		index++;
@@ -35,17 +40,27 @@ public class ImplementWorkout : MonoBehaviour
 
 	public void runWorkout ()
 	{
-		if (timer.isZero () && index != Generator.exercises.Length) {
+		BaseExercise [] exercises = Generator.exercises;
+
+		if (exercises.Length == 0) {
+			Debug.Log ("There are no exercises");
+			return;
+		}
+
+		if (timer.isZero () && index < exercises.Length) {
+
+			// display exercise
 			if (isRest == false) {
-				textbox.text = Generator.exercises [index].name;
-				if (index < Generator.exercises.Length - 1) {
-					nextTextbox.text = "Next up:  " + Generator.exercises [index + 1].name;
+				textbox.text = exercises [index].name;
+				if (index < exercises.Length - 1) {
+					nextTextbox.text = "Next up:  " + exercises [index + 1].name;
 				} else {
 					nextTextbox.text = "";
 				}
 
-				timer.setTimer (Generator.exercises [index].length / 60,
-					Generator.exercises [index].length % 60);
+				// reset timer
+				timer.setTimer (exercises [index].length / 60,
+					exercises [index].length % 60);
 				isRest = true;
 			}
 
@@ -53,9 +68,9 @@ public class ImplementWorkout : MonoBehaviour
 			else {
 				textbox.text = "Rest...";
 
-				timer.setTimer (Generator.exercises [index].restLength / 60,
-					Generator.exercises [index].restLength % 60);
-
+				// reset timer
+				timer.setTimer (exercises [index].restLength / 60,
+					exercises [index].restLength % 60);
 				index++;
 				isRest = false;
 			}
