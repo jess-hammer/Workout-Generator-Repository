@@ -9,13 +9,15 @@ public class ChangeTextToValue : MonoBehaviour
 	private Text textBox;
 	public string startString = "";
 	public string endString = "";
-	public string nameToUpdate;
+	public PrefName nameToUpdate;
+	private UserPrefs userPrefs;
 
     // Start is called before the first frame update
     void Start()
     {
 		textBox = GetComponent<Text> ();
-		ChangeValue (UserPrefs.getValueFromString(nameToUpdate));
+		userPrefs = GameObject.FindGameObjectWithTag ("System").GetComponent<UserPrefs> ();
+		ChangeValue (userPrefs.getValue(nameToUpdate));
     }
 
     public void ChangeValue(Single value)

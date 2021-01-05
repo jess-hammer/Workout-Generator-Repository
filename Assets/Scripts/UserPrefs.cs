@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public static class UserPrefs
+public class UserPrefs : MonoBehaviour
 {
-	public static int difficulty = 3;
-	public static int duration = 15;
-	public static int warmup = 5;
-	public static int cooldown = 5;
+	public int difficulty = 3;
+	public int duration = 15;
+	public int warmup = 5;
+	public int cooldown = 5;
 	
 
-	public static bool upperFocus = true;
-	public static bool middleFocus = true;
-	public static bool lowerFocus = true;
+	public bool upperFocus = true;
+	public bool middleFocus = true;
+	public bool lowerFocus = true;
 
-	public static void updateStringToValue(string str, int value)
+	/*public void updateStringToValue(string str, int value)
 	{
 		if (str.Equals("difficulty")) {
 			difficulty = value;
@@ -31,7 +31,7 @@ public static class UserPrefs
 		}
 	}
 
-	public static int getValueFromString (string str)
+	public int getValueFromString (string str)
 	{
 		if (str.Equals ("difficulty")) {
 			return difficulty;
@@ -48,7 +48,7 @@ public static class UserPrefs
 	}
 
 
-	public static void updateStringToValue (string str, bool value)
+	public void updateStringToValue (string str, bool value)
 	{
 		if (str.Equals ("upperFocus")) {
 			upperFocus = value;
@@ -61,7 +61,7 @@ public static class UserPrefs
 		}
 	}
 
-	public static bool getBoolValueFromString (string str)
+	public bool getBoolValueFromString (string str)
 	{
 		if (str.Equals ("upperFocus")) {
 			return upperFocus;
@@ -73,5 +73,89 @@ public static class UserPrefs
 			Debug.Log ("Could not find " + str + " user pref to get");
 		}
 		return false;
+	}*/
+
+	public void updateValue (PrefName pref, int value)
+	{
+		switch (pref) {
+		case PrefName.Cooldown:
+			cooldown = value;
+			break;
+		case PrefName.Difficulty:
+			difficulty = value;
+			break;
+		case PrefName.Duration:
+			duration = value;
+			break;
+		case PrefName.Warmup:
+			warmup = value;
+			break;
+		default:
+			Debug.Log ("Update failed");
+			break;
+		}
 	}
+
+	public void updateValue (PrefName pref, bool value)
+	{
+		switch (pref) {
+		case PrefName.UpperFocus:
+			upperFocus = value;
+			break;
+		case PrefName.MiddleFocus:
+			middleFocus = value;
+			break;
+		case PrefName.LowerFocus:
+			lowerFocus = value;
+			break;
+		default:
+			Debug.Log ("Update failed");
+			break;
+		}
+	}
+
+	public int getValue (PrefName pref)
+	{
+		switch (pref) {
+		case PrefName.Cooldown:
+			return cooldown;
+		case PrefName.Difficulty:
+			return difficulty;
+		case PrefName.Duration:
+			return duration;
+		case PrefName.Warmup:
+			return warmup;
+		default:
+			Debug.Log ("Get value failed");
+			break;
+		}
+		return -1;
+	}
+
+
+	public bool getBoolValue (PrefName pref)
+	{
+		switch (pref) {
+		case PrefName.UpperFocus:
+			return upperFocus;
+		case PrefName.MiddleFocus:
+			return middleFocus;
+		case PrefName.LowerFocus:
+			return lowerFocus;
+		default:
+			Debug.Log ("Get bool failed");
+			break;
+		}
+		return true;
+	}
+}
+
+public enum PrefName {
+	Difficulty,
+	Duration,
+	Warmup,
+	Cooldown,
+	UpperFocus,
+	MiddleFocus,
+	LowerFocus
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GrowWithTime : MonoBehaviour
 {
-	[Space]
-	public Vector3 targetPos;
+	/*public Vector3 targetPos;
 	public ImplementWorkout workout;
 	private Vector3 startPos;
 	private float dist;
@@ -25,5 +24,9 @@ public class GrowWithTime : MonoBehaviour
 		Debug.Log ("%: " + timeElapsed / Generator.totalTimeLength);
 		pos.y = startPos.y - dist * (timeElapsed/Generator.totalTimeLength);
 		transform.position = pos;
-    }
+    }*/
+	void Start()
+	{
+
+	}
 }

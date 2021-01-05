@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class DisplayOverview : MonoBehaviour
 {
+	public Generator generator;
+	public UserPrefs userPrefs;
 	public Text duration;
 	public Text difficulty;
 	public Text workout;
 
 	// Start is called before the first frame update
-	void Start()
+	void OnEnable()
     {
-		Generator.CreateWorkout ();
-		difficulty.text = "Difficulty: " + UserPrefs.difficulty;
-		duration.text = "Duration: " + UserPrefs.duration  + " min";
-		workout.text = Generator.toString ();
+		generator.CreateWorkout ();
+		difficulty.text = "Difficulty: " + userPrefs.difficulty;
+		duration.text = "Duration: " + userPrefs.duration  + " min";
+		workout.text = generator.toString ();
 	}
 }

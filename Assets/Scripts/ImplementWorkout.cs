@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ImplementWorkout : MonoBehaviour
 {
-	public bool isRest = false;
+	/*public bool isRest = false;
 	public int index = 0;
 
 	public Text textbox;
@@ -75,5 +75,6 @@ public class ImplementWorkout : MonoBehaviour
 				isRest = false;
 			}
 		}
-	}
+	}*/
+
 }

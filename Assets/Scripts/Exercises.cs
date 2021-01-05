@@ -5,15 +5,14 @@ using UnityEngine;
 
 public static class Exercises
 {
-	public static int seed;
-	//public static BaseExercise [] exercises;
-	//public static BaseExercise [] warmupExercises;
-	//public static BaseExercise [] cooldownExercises;
+	public static BaseExercise [] exercises;
+	public static BaseExercise [] warmupExercises;
+	public static BaseExercise [] cooldownExercises;
+	public static bool isInitalised = false;
 
-	public static BaseExercise [] generateAllExerciseList()
+	public static void generateAllExerciseList()
 	{
-		seed = UnityEngine.Random.Range (-10000, 10000);
-		UnityEngine.Random.InitState (seed);
+		
 
 		List<BaseExercise> exs = new List<BaseExercise> ();
 		List<BaseExercise> warmupExs = new List<BaseExercise> ();
@@ -97,11 +96,9 @@ public static class Exercises
 		warmupExs.Add (new BaseExercise ("Boxer shuffle", 1, 50, 10, focus));
 
 		// shuffle it
-		BaseExercise [] exercises;
 		exercises = exs.ToArray ();
-		Generator.ShuffleArray (exercises);
-
-		return exercises;
+		warmupExercises = warmupExs.ToArray ();
+		isInitalised = true;
 	}
 }
 

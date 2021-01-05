@@ -5,19 +5,33 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public static class Generator
+public class Generator : MonoBehaviour
 {
-	public static BaseExercise [] exercises = new BaseExercise [0];
-	public static float totalTimeLength = 0;
-	public static float totalTimeLeft = 0;
+	public BaseExercise [] exercises = new BaseExercise [0];
+	public float totalTimeLength = 0;
+	public float totalTimeLeft = 0;
+	private UserPrefs userPrefs;
+	public int seed;
+	
+
+	public void Start ()
+	{
+		userPrefs = GetComponent<UserPrefs> ();
+		seed = UnityEngine.Random.Range (-10000, 10000);
+		UnityEngine.Random.InitState (seed);
+
+		if (!Exercises.isInitalised) {
+			Exercises.generateAllExerciseList ();
+		}
+	}
 
 	// returns an array of excercises in random order
-	public static void CreateWorkout ()
+	public void CreateWorkout ()
 	{
 		// initalise variables
-		List<BaseExercise> exerciseSelection = new List<BaseExercise> ();
-		int timeLeft = UserPrefs.duration  * 60; //converted to seconds
-		BaseExercise [] options = Exercises.generateAllExerciseList();
+	    List<BaseExercise> exerciseSelection =  new List<BaseExercise> ();
+		int timeLeft = userPrefs.duration  * 60; //converted to seconds
+	  	BaseExercise [] options = Exercises.exercises;
 		int i = 0;
 
 		// safeguard
@@ -49,18 +63,18 @@ public static class Generator
 	}
 
 	// returns true if exercise matches the user prefs
-	public static bool alignment(BaseExercise exercise)
+	public bool alignment(BaseExercise exercise)
 	{
 		// check difficulty
-		if (!(exercise.difficulty == UserPrefs.difficulty ||
-			exercise.difficulty == UserPrefs.difficulty - 1)) { return false; }
+		if (!(exercise.difficulty == userPrefs.difficulty ||
+			exercise.difficulty == userPrefs.difficulty - 1)) { return false; }
 
 		// check body focus
-		if (UserPrefs.upperFocus && exercise.isUpper) {
+		if (userPrefs.upperFocus && exercise.isUpper) {
 			return true;
-		} else if (UserPrefs.middleFocus && exercise.isMiddle) {
+		} else if (userPrefs.middleFocus && exercise.isMiddle) {
 			return true;
-		} else if (UserPrefs.lowerFocus && exercise.isLower) {
+		} else if (userPrefs.lowerFocus && exercise.isLower) {
 			return true;
 		} else {
 			return false;
@@ -92,12 +106,12 @@ public static class Generator
 		Debug.Log (str);
 	}
 
-	public static string toString ()
+	public string toString ()
 	{
 		string str = "";
 		int n = exercises.Length;
 		for (int i = 0; i < n; i++) {
-			str += "\t" + (i + 1) + ". " + exercises [i].name + "...." + exercises [i].length + " sec\n";
+			str += "\t" + (i + 1) + ") " + exercises [i].name + ". . . . ." + exercises [i].length + " sec\n";
 		}
 		return str;
 	}
