@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class Generator : MonoBehaviour
 {
-	public BaseExercise [] exercises = new BaseExercise [0];
+	public BaseExercise [] warmupExercises;
+	public BaseExercise [] exercises;
 	public float totalTimeLength = 0;
 	public float totalTimeLeft = 0;
 	private UserPrefs userPrefs;
@@ -28,38 +29,46 @@ public class Generator : MonoBehaviour
 	// returns an array of excercises in random order
 	public void CreateWorkout ()
 	{
-		// initalise variables
-	    List<BaseExercise> exerciseSelection =  new List<BaseExercise> ();
-		int timeLeft = userPrefs.duration  * 60; //converted to seconds
-	  	BaseExercise [] options = Exercises.exercises;
-		int i = 0;
+		warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup);
+		exercises = GenerateFromList (Exercises.exercises, userPrefs.duration);
+	}
 
-		// safeguard
-		if (options.Length == 0) {
-			Debug.Log ("Error - there are no options to choose from");
+
+	private BaseExercise [] GenerateFromList(BaseExercise [] options, int length)
+	{
+		// initalise variables
+		List<BaseExercise> exerciseSelection = new List<BaseExercise> ();
+		int timeLeft =  length * 60; //converted to seconds
+
+		// select all exercises that align with the user prefs
+		for (int n = 0; n < options.Length; n++) {
+			if (alignment (options [n])) {
+				exerciseSelection.Add (options [n]);
+			}
 		}
 
-		// select exercise that align with the user prefs
+		// shuffle
+		BaseExercise [] shuffledOptions = exerciseSelection.ToArray ();
+		ShuffleArray (shuffledOptions);
+
+		// only pick enough to make the correct time limit
+		List<BaseExercise> actualExercises = new List<BaseExercise> ();
+		int i = 0;
 		while (timeLeft > 0) {
-			if (alignment(options[i])) {
-				exerciseSelection.Add (options[i]);
-				int amount = options [i].length + options [i].restLength;
-				timeLeft -= amount;
-				totalTimeLength += amount + 2;
-			}
+			actualExercises.Add (shuffledOptions [i]);
+			int amount = shuffledOptions [i].length + shuffledOptions [i].restLength;
+			timeLeft -= amount;
+			totalTimeLength += amount + 2; // +2 cuz of timer descrepancy?
 
 			// loop back around
-			if (i == options.Length - 1) {
+			if (i >= shuffledOptions.Length - 1) {
 				i = -1;
 			}
 			i++;
 		}
 
-		// convert to array and shuffle the order
-		var exArray = exerciseSelection.ToArray ();
-		ShuffleArray (exArray); // not sure if really need to reshuffle
-		exercises = exArray;
-		totalTimeLeft = totalTimeLength;
+		// convert to array
+		return actualExercises.ToArray ();
 	}
 
 	// returns true if exercise matches the user prefs
@@ -109,9 +118,22 @@ public class Generator : MonoBehaviour
 	public string toString ()
 	{
 		string str = "";
-		int n = exercises.Length;
+
+		
+		int n = warmupExercises.Length;
+
+		if (n > 0) {
+			str += "\t --Warmup--\n";
+			for (int i = 0; i < n; i++) {
+				str += "\t" + (i + 1) + ") " + warmupExercises [i].name + ". . . . . " + warmupExercises [i].length + " sec\n";
+			}
+			str += "\t --Main workout--\n";
+		}
+
+		n = exercises.Length;
+		
 		for (int i = 0; i < n; i++) {
-			str += "\t" + (i + 1) + ") " + exercises [i].name + ". . . . ." + exercises [i].length + " sec\n";
+			str += "\t" + (i + 1) + ") " + exercises [i].name + ". . . . . " + exercises [i].length + " sec\n";
 		}
 		return str;
 	}

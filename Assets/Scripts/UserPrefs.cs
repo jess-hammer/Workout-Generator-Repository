@@ -6,15 +6,45 @@ using UnityEngine;
 
 public class UserPrefs : MonoBehaviour
 {
-	public int difficulty = 3;
+	public int difficulty = 2;
 	public int duration = 15;
 	public int warmup = 5;
 	public int cooldown = 5;
+	public int totalDuration;
 	
 
 	public bool upperFocus = true;
 	public bool middleFocus = true;
 	public bool lowerFocus = true;
+
+	private void Awake ()
+	{
+		totalDuration = duration + cooldown + warmup;
+	}
+
+	public bool isValid()
+	{
+		if (!upperFocus && !middleFocus && !lowerFocus) {
+			Debug.Log ("You need to select a target area");
+			return false;
+		}
+		if (warmup + cooldown > duration) {
+			Debug.Log ("You need to select a more reasonable warmup + cooldown to duration ratio");
+		}
+		return true;
+	}
+
+	public void randomise()
+	{
+		difficulty = UnityEngine.Random.Range (1, 6);
+		duration = UnityEngine.Random.Range (15, 61);
+		warmup = UnityEngine.Random.Range (5, 11);
+		cooldown = UnityEngine.Random.Range (5, 11);
+
+		if (duration < 20) {
+			warmup = Mathf.Clamp (warmup, 0, 6);
+		}
+	}
 
 	/*public void updateStringToValue(string str, int value)
 	{
@@ -80,15 +110,18 @@ public class UserPrefs : MonoBehaviour
 		switch (pref) {
 		case PrefName.Cooldown:
 			cooldown = value;
+			totalDuration = duration + warmup + cooldown;
 			break;
 		case PrefName.Difficulty:
 			difficulty = value;
 			break;
 		case PrefName.Duration:
 			duration = value;
+			totalDuration = duration + warmup + cooldown;
 			break;
 		case PrefName.Warmup:
 			warmup = value;
+			totalDuration = duration + warmup + cooldown;
 			break;
 		default:
 			Debug.Log ("Update failed");
@@ -125,6 +158,8 @@ public class UserPrefs : MonoBehaviour
 			return duration;
 		case PrefName.Warmup:
 			return warmup;
+		case PrefName.TotalDuration:
+			return totalDuration;
 		default:
 			Debug.Log ("Get value failed");
 			break;
@@ -157,5 +192,6 @@ public enum PrefName {
 	Cooldown,
 	UpperFocus,
 	MiddleFocus,
-	LowerFocus
+	LowerFocus,
+	TotalDuration
 }

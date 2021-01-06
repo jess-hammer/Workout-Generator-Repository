@@ -24,4 +24,9 @@ public class ChangeTextToValue : MonoBehaviour
 	{
 		textBox.text = startString + " " + value + " " + endString;
 	}
+
+	public void ChangeValue()
+	{
+		textBox.text = startString + "\n" + userPrefs.getValue (nameToUpdate) + " " + endString;
+	}
 }

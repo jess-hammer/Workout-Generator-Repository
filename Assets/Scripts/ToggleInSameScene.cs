@@ -6,12 +6,15 @@ public class ToggleInSameScene : MonoBehaviour
 {
 	public GameObject [] customiserObjects;
 	public GameObject [] overviewObjects;
+	public UserPrefs userPrefs;
 
 
     public void CustomiserToOverview()
 	{
-		setArrayActive (overviewObjects, true);
-		setArrayActive (customiserObjects, false);
+		if (userPrefs.isValid ()) {
+			setArrayActive (overviewObjects, true);
+			setArrayActive (customiserObjects, false);
+		}
 	}
 
 	public void OverviewToCustomiser ()
