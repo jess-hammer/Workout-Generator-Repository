@@ -28,9 +28,6 @@ public class UserPrefs : MonoBehaviour
 			Debug.Log ("You need to select a target area");
 			return false;
 		}
-		if (warmup + cooldown > duration) {
-			Debug.Log ("You need to select a more reasonable warmup + cooldown to duration ratio");
-		}
 		return true;
 	}
 

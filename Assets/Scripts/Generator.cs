@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public class Generator : MonoBehaviour
 {
-	public BaseExercise [] warmupExercises;
-	public BaseExercise [] exercises;
+	public Exercise [] warmupExercises;
+	public Exercise [] cooldownExercises;
+	public Exercise [] exercises;
 	public float totalTimeLength = 0;
 	public float totalTimeLeft = 0;
 	private UserPrefs userPrefs;
@@ -22,23 +23,28 @@ public class Generator : MonoBehaviour
 		UnityEngine.Random.InitState (seed);
 
 		if (!Exercises.isInitalised) {
-			Exercises.generateAllExerciseList ();
+			//Exercises.generateAllExerciseList ();
+			Exercises.Initialise ();
 		}
 	}
 
 	// returns an array of excercises in random order
 	public void CreateWorkout ()
 	{
-		warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup);
+		//warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup);
 		exercises = GenerateFromList (Exercises.exercises, userPrefs.duration);
 	}
 
 
-	private BaseExercise [] GenerateFromList(BaseExercise [] options, int length)
+	private Exercise [] GenerateFromList(Exercise [] options, int length)
 	{
 		// initalise variables
-		List<BaseExercise> exerciseSelection = new List<BaseExercise> ();
+		List<Exercise> exerciseSelection = new List<Exercise> ();
 		int timeLeft =  length * 60; //converted to seconds
+
+		// shuffle
+
+		ShuffleArray (options);
 
 		// select all exercises that align with the user prefs
 		for (int n = 0; n < options.Length; n++) {
@@ -47,16 +53,14 @@ public class Generator : MonoBehaviour
 			}
 		}
 
-		// shuffle
-		BaseExercise [] shuffledOptions = exerciseSelection.ToArray ();
-		ShuffleArray (shuffledOptions);
+		Exercise [] shuffledOptions = exerciseSelection.ToArray ();
 
 		// only pick enough to make the correct time limit
-		List<BaseExercise> actualExercises = new List<BaseExercise> ();
+		List<Exercise> actualExercises = new List<Exercise> ();
 		int i = 0;
 		while (timeLeft > 0) {
 			actualExercises.Add (shuffledOptions [i]);
-			int amount = shuffledOptions [i].length + shuffledOptions [i].restLength;
+			int amount = shuffledOptions [i].totalSequenceDuration;
 			timeLeft -= amount;
 			totalTimeLength += amount + 2; // +2 cuz of timer descrepancy?
 
@@ -72,23 +76,33 @@ public class Generator : MonoBehaviour
 	}
 
 	// returns true if exercise matches the user prefs
-	public bool alignment(BaseExercise exercise)
+	public bool alignment(Exercise exercise)
 	{
-		// check difficulty
-		if (!(exercise.difficulty == userPrefs.difficulty ||
-			exercise.difficulty == userPrefs.difficulty - 1)) { return false; }
+		float randNum = UnityEngine.Random.value;
+		int diff1 = userPrefs.difficulty;
+		int diff2 = exercise.difficulty;
 
-		// check body focus
-		if (userPrefs.upperFocus && exercise.isUpper) {
-			return true;
-		} else if (userPrefs.middleFocus && exercise.isMiddle) {
-			return true;
-		} else if (userPrefs.lowerFocus && exercise.isLower) {
-			return true;
-		} else {
-			return false;
+		// check difficulty
+		if (!(exercise.difficulty == 5 || diff1 == diff2 ||
+			((diff2 == diff1 - 1 || diff2 == diff1 + 1) && randNum < 0.2))) {
+			return false; // incorrect difficulty
 		}
 
+		// check body focus
+		for (int i = 0; i < exercise.bodyFocus.Length; i++) {
+			if (userPrefs.upperFocus && exercise.bodyFocus[i] == BodyFocus.Upper) {
+				return true;
+			}
+			if (userPrefs.middleFocus && exercise.bodyFocus [i] == BodyFocus.Middle) {
+				return true;
+			}
+			if (userPrefs.lowerFocus && exercise.bodyFocus [i] == BodyFocus.Lower) {
+				return true;
+			}
+		}
+		
+
+		return false;
 	}
 
 	public static void ShuffleArray<T> (T [] array)
@@ -105,35 +119,45 @@ public class Generator : MonoBehaviour
 		}
 	}
 
-	// prints exercises to the log for debug purposes
-	public static void printExercises (BaseExercise [] array)
-	{
-		string str = "";
-		for (int i = 0; i < array.Length; i++) {
-			str += array [i].name + ", ";
-		}
-		Debug.Log (str);
-	}
+	
 
 	public string toString ()
 	{
 		string str = "";
 
 		
-		int n = warmupExercises.Length;
+		str += arrayToString (warmupExercises, "Warmup");
+		str += arrayToString (exercises, "Main Workout");
+		str += arrayToString (cooldownExercises, "Cooldown");
 
-		if (n > 0) {
-			str += "\t --Warmup--\n";
-			for (int i = 0; i < n; i++) {
-				str += "\t" + (i + 1) + ") " + warmupExercises [i].name + ". . . . . " + warmupExercises [i].length + " sec\n";
-			}
-			str += "\t --Main workout--\n";
+		return str;
+	}
+
+	private string arrayToString(Exercise [] exs, string title)
+	{
+		string str = "";
+
+		// null check
+		if (exs == null) {
+			str += "-- No " + title + " --\n";
+			return str;
 		}
 
-		n = exercises.Length;
 		
-		for (int i = 0; i < n; i++) {
-			str += "\t" + (i + 1) + ") " + exercises [i].name + ". . . . . " + exercises [i].length + " sec\n";
+		int count = 1;
+		if (exs.Length > 0) {
+			str += "-- " + title + " --\n";
+
+			for (int i = 0; i < exs.Length; i++) {
+				for (int j = 0; j < exs [i].sequence.Length; j++) {
+					str += count + ") " + exs [i].sequence[j].name + ". . . . "
+						+ exs [i].sequence [j].length + "s on + " + exs [i].sequence [j].restlength + "s off\n";
+					count++;
+				}
+			}
+
+		} else {
+			str += "-- No " + title + " --\n";
 		}
 		return str;
 	}
