@@ -11,7 +11,6 @@ public class Generator : MonoBehaviour
 	public Exercise [] cooldownExercises;
 	public Exercise [] exercises;
 	public float totalTimeLength = 0;
-	public float totalTimeLeft = 0;
 	private UserPrefs userPrefs;
 	public int seed;
 	
@@ -32,7 +31,9 @@ public class Generator : MonoBehaviour
 	public void CreateWorkout ()
 	{
 		//warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup);
+		warmupExercises = new Exercise [0];
 		exercises = GenerateFromList (Exercises.exercises, userPrefs.duration);
+		cooldownExercises = new Exercise [0];
 	}
 
 

@@ -43,6 +43,25 @@ public class UserPrefs : MonoBehaviour
 		}
 	}
 
+
+	public string difficultyToString ()
+	{
+		switch (difficulty) {
+		case 0:
+			return "1 (Easy)";
+		case 1:
+			return "2 (Low Impact)";
+		case 2:
+			return "3 (Moderate)";
+		case 3:
+			return "4 (Tough)";
+		case 4:
+			return "5 (Challenging)";
+		default:
+			return "Invalid difficulty";
+		}
+	}
+
 	/*public void updateStringToValue(string str, int value)
 	{
 		if (str.Equals("difficulty")) {

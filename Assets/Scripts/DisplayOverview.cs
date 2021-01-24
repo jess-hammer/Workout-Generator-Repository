@@ -15,8 +15,9 @@ public class DisplayOverview : MonoBehaviour
 	void OnEnable()
     {
 		generator.CreateWorkout ();
-		difficulty.text = "Difficulty: " + userPrefs.difficulty;
+		difficulty.text = "Difficulty: " + userPrefs.difficultyToString();
 		duration.text = "Duration: " + userPrefs.totalDuration  + " min";
 		workout.text = generator.toString ();
 	}
+
 }

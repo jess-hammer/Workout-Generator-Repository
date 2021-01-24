@@ -5,76 +5,125 @@ using UnityEngine.UI;
 
 public class ImplementWorkout : MonoBehaviour
 {
-	/*public bool isRest = false;
+	public bool isRest = false;
 	public int index = 0;
-
+	private float totalTimeLeft;
+	private float totalDuration;
 	public Text textbox;
 	public Text nextTextbox;
 	public Timer timer;
+	Queue<ExercisePart> exerciseQueue;
+	Generator generator;
+	ExercisePart currentEx;
+	bool isFinished = false;
 
 	// Start is called before the first frame update
 	void Start()
     {
+		generator = GameObject.FindWithTag ("System").GetComponent<Generator> ();
 		textbox.text = "";
 		nextTextbox.text = "";
+		totalTimeLeft = generator.totalTimeLength;
+		totalDuration = generator.totalTimeLength;
+		exerciseQueue = convertToParts ();
 	}
 
-    // Update is called once per frame
-    void Update()
+	private Queue<ExercisePart> convertToParts()
+	{
+		Queue<ExercisePart> queue = new Queue<ExercisePart> ();
+		convertSegmentToParts (generator.warmupExercises, queue);
+		if (queue.Count > 0) {
+			queue.Enqueue (new ExercisePart ("Time for the main workout!", 10, 0));
+		}
+		convertSegmentToParts (generator.exercises, queue);
+		if (queue.Count > 0 && generator.cooldownExercises.Length > 0) {
+			queue.Enqueue (new ExercisePart ("Great job, time to cool down", 10, 0));
+		}
+		convertSegmentToParts (generator.cooldownExercises, queue);
+
+		queue.Enqueue (new ExercisePart ("Finish", 0, 0));
+		Debug.Log ("converted");
+		return queue;
+	}
+
+	void convertSegmentToParts (Exercise [] exs, Queue<ExercisePart> queue)
+	{
+		if (exs == null) {
+			Debug.Log ("Null array??");
+			return;
+		}
+
+		for (int i = 0; i < exs.Length; i++) {
+			for (int j = 0; j < exs[i].sequence.Length; j++) {
+				queue.Enqueue (exs [i].sequence [j]);
+			}
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
     {
-		runWorkout ();
-		Generator.totalTimeLeft -= Time.deltaTime;
+		if (!isFinished) {
+			runWorkout ();
+			totalTimeLeft -= Time.deltaTime;
+		}
 	}
 
 	public void skipWorkout()
 	{
-		Generator.totalTimeLeft -= timer.timeLeft + 1;
-		if (isRest == false && index < Generator.exercises.Length) {
-			Generator.totalTimeLeft -= Generator.exercises [index].restLength + 1;
-		}
+		totalTimeLeft -= timer.timeLeft + 1;
 
-		timer.setTimer (0, 0);
 		isRest = false;
+		goToNext ();
+
 		index++;
 	}
 
 	public void runWorkout ()
 	{
-		BaseExercise [] exercises = Generator.exercises;
 
-		if (exercises.Length == 0) {
-			Debug.Log ("There are no exercises");
+		if (timer.isZero ()) {
+			goToNext ();
+		}
+	}
+
+	public void goToNext()
+	{
+		if (exerciseQueue.Count == 0) {
+			isFinished = true;
+			textbox.text = "You're all finished, well done!";
+			nextTextbox.text = "";
 			return;
 		}
 
-		if (timer.isZero () && index < exercises.Length) {
+		currentEx = exerciseQueue.Dequeue ();
 
-			// display exercise
-			if (isRest == false) {
-				textbox.text = exercises [index].name;
-				if (index < exercises.Length - 1) {
-					nextTextbox.text = "Next up:  " + exercises [index + 1].name;
-				} else {
-					nextTextbox.text = "";
-				}
-
-				// reset timer
-				timer.setTimer (exercises [index].length / 60,
-					exercises [index].length % 60);
-				isRest = true;
-			}
-
-			// time for a mini rest inbetween excercises
-			else {
-				textbox.text = "Rest...";
-
-				// reset timer
-				timer.setTimer (exercises [index].restLength / 60,
-					exercises [index].restLength % 60);
-				index++;
-				isRest = false;
-			}
+		if (currentEx.length == 0 && currentEx.restlength == 0) {
+			return;
 		}
-	}*/
+
+		// display exercise
+		if (!isRest) {
+			textbox.text = currentEx.name;
+			if (exerciseQueue.Count > 0) {
+				nextTextbox.text = "Next up:  " + exerciseQueue.Peek ().name;
+			} else {
+				nextTextbox.text = "";
+			}
+
+			// reset timer
+			timer.setTimer (currentEx.length / 60, currentEx.length % 60);
+			isRest = true;
+		}
+
+		// time for a rest inbetween excercises
+		else {
+			textbox.text = "Rest";
+
+			// reset timer
+			timer.setTimer (currentEx.restlength / 60, currentEx.restlength % 60);
+			isRest = false;
+		}
+	}
 
 }
