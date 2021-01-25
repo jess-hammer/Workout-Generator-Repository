@@ -31,13 +31,13 @@ public class Generator : MonoBehaviour
 	public void CreateWorkout ()
 	{
 		//warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup);
-		warmupExercises = new Exercise [0];
-		exercises = GenerateFromList (Exercises.exercises, userPrefs.duration);
+		warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup, SegmentType.Warmup);
+		exercises = GenerateFromList (Exercises.exercises, userPrefs.duration, SegmentType.Workout);
 		cooldownExercises = new Exercise [0];
 	}
 
 
-	private Exercise [] GenerateFromList(Exercise [] options, int length)
+	private Exercise [] GenerateFromList(Exercise [] options, int length, SegmentType segmentType)
 	{
 		// initalise variables
 		List<Exercise> exerciseSelection = new List<Exercise> ();
@@ -48,11 +48,20 @@ public class Generator : MonoBehaviour
 		ShuffleArray (options);
 
 		// select all exercises that align with the user prefs
-		for (int n = 0; n < options.Length; n++) {
-			if (alignment (options [n])) {
-				exerciseSelection.Add (options [n]);
+		if (segmentType == SegmentType.Warmup) {
+			for (int n = 0; n < options.Length; n++) {
+				if (warmupAlignment (options [n])) {
+					exerciseSelection.Add (options [n]);
+				}
+			}
+		} else {
+			for (int n = 0; n < options.Length; n++) {
+				if (alignment (options [n])) {
+					exerciseSelection.Add (options [n]);
+				}
 			}
 		}
+		
 
 		Exercise [] shuffledOptions = exerciseSelection.ToArray ();
 
@@ -102,6 +111,35 @@ public class Generator : MonoBehaviour
 			}
 		}
 		
+
+		return false;
+	}
+
+	public bool warmupAlignment (Exercise exercise)
+	{
+		float randNum = UnityEngine.Random.value;
+		int diff1 = userPrefs.difficulty;
+		int diff2 = exercise.difficulty;
+
+		// check difficulty
+		if (!(exercise.difficulty == 5 || diff1 == diff2 || 
+			(randNum < 0.6 && (diff2 == diff1 - 1 || diff2 == diff1 + 1) ))) {
+			return false; // incorrect difficulty
+		}
+
+		// check body focus
+		for (int i = 0; i < exercise.bodyFocus.Length; i++) {
+			if (userPrefs.upperFocus && exercise.bodyFocus [i] == BodyFocus.Upper) {
+				return true;
+			}
+			if (userPrefs.middleFocus && exercise.bodyFocus [i] == BodyFocus.Middle) {
+				return true;
+			}
+			if (userPrefs.lowerFocus && exercise.bodyFocus [i] == BodyFocus.Lower) {
+				return true;
+			}
+		}
+
 
 		return false;
 	}
@@ -161,5 +199,11 @@ public class Generator : MonoBehaviour
 			str += "-- No " + title + " --\n";
 		}
 		return str;
+	}
+
+	public enum SegmentType {
+		Warmup,
+		Workout,
+		Cooldown
 	}
 }

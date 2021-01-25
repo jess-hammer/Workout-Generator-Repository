@@ -32,6 +32,8 @@ public static class Exercises {
 	private static Type [] cardioHIIT = { Type.Cardio, Type.HIIT };
 	private static Type [] pilatesStretching = { Type.Pilates, Type.Stretching };
 	private static Type [] strengthCardioHIIT = { Type.Strength, Type.Cardio, Type.HIIT };
+	private static Type [] stretchingCardio = { Type.Cardio, Type.Stretching };
+	private static Type [] pilatesCardioStretching = { Type.Cardio, Type.Pilates, Type.Stretching };
 
 	// EQUIPMENT---------------------------------------------
 	private static Equipment [] noEquipment = { Equipment.NoEquipment };
@@ -142,10 +144,13 @@ public static class Exercises {
 		initialiseMiddle (exs);
 		initialiseLower (exs);
 
+		initialiseWarmups (warmupExs);
+
 
 		exercises = exs.ToArray();
 		warmupExercises = warmupExs.ToArray ();
 		cooldownExercises = cooldownExs.ToArray ();
+
 	}
 
 	private static void initialiseUpper (List<Exercise> exs)
@@ -510,6 +515,135 @@ public static class Exercises {
 		sequence.Add (new ExercisePart ("Rocket Squats", 45, 15));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, lower, strengthCardio, noEquipment));
 		sequence.Clear ();
+	}
+
+	private static void initialiseWarmups (List<Exercise> exs)
+	{
+		List<ExercisePart> sequence = new List<ExercisePart> ();
+
+		sequence.Add (new ExercisePart ("Big Arm Circles (Right)", 20, 5));
+		sequence.Add (new ExercisePart ("Big Arm Circles (Left)", 20, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Wrist circles", 30, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Wrist Flex To Sky", 15, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Neck Rotations", 20, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Shoulder Circles", 20, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Arm Stretch (Right)", 20, 5));
+		sequence.Add (new ExercisePart ("Arm Stretch (Left)", 20, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Overhead Tricep Stretch (Right)", 20, 5));
+		sequence.Add (new ExercisePart ("Overhead Tricep Stretch (Left)", 20, 5));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Sideways Reaches (Right)", 30, 5));
+		sequence.Add (new ExercisePart ("Sideways Reaches (Left)", 30, 5));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, upperMid, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Standing Torso Twists", 50, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, middle, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Wide Hip Circles (Clockwise)", 20, 0));
+		sequence.Add (new ExercisePart ("Wide Hip Circles (Anti-clockwise)", 20, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, middle, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Leg Swings (Right)", 45, 5));
+		sequence.Add (new ExercisePart ("Leg Swings (Left)", 45, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, stretchingCardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Slow-rocking Butt-kickers", 45, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, lower, stretchingCardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Ankle Holding Stretch", 30, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Sitting Toe Reach", 30, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, middleLow, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Front Kicks (Right)", 45, 10));
+		sequence.Add (new ExercisePart ("Front Kicks (Left)", 45, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, stretchingCardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Standing Quad Stretch (Right)", 30, 5));
+		sequence.Add (new ExercisePart ("Standing Quad Stretch (Left)", 30, 5));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Side Lunge to Knee Hug (Right)", 30, 5));
+		sequence.Add (new ExercisePart ("Side Lunge to Knee Hug (Left)", 30, 5));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, stretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Alternating Side Leg Raises (Standing)", 50, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, lower, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Quad/Hamstring Lunge Rocks (Right)", 30, 10));
+		sequence.Add (new ExercisePart ("Quad/Hamstring Lunge Rocks (Left)", 30, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Jog In Place", 50, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Jumping Jacks", 50, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Tough, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Jumping Jacks", 30, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("High Knee Marches", 40, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Marching Hip Circles", 40, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Walking Knee Hugs", 40, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, stretchingCardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Cross Toe Touches", 40, 10));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, upperMid, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Up & Outs", 50, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Boxer Shuffle", 50, 10));
+		exs.Add (new Exercise (sequence, Difficulty.Easy, allAreas, cardio, noEquipment));
+		sequence.Clear ();
+
+
 	}
 }
 
