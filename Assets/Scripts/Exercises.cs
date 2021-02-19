@@ -453,13 +453,13 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Straight Leg Raises (Left)", 50, 10));
-		sequence.Add (new ExercisePart ("Straight Leg Raises (Right)", 50, 10));
+		sequence.Add (new ExercisePart ("Straight Leg Raises (Left)", 50, 10, "Straight Leg Raises"));
+		sequence.Add (new ExercisePart ("Straight Leg Raises (Right)", 50, 10, "Straight Leg Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Straight Leg Pulses (Left)", 50, 10));
-		sequence.Add (new ExercisePart ("Straight Leg Pulses (Right)", 50, 10));
+		sequence.Add (new ExercisePart ("Straight Leg Pulses (Left)", 50, 10, "Straight Leg Pulses"));
+		sequence.Add (new ExercisePart ("Straight Leg Pulses (Right)", 50, 10, "Straight Leg Pulses"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
