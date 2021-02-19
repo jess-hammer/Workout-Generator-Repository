@@ -206,7 +206,7 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, canBeSingle));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Chest Press (Weighted)", 45, 15));
+		sequence.Add (new ExercisePart ("Chest Press", 45, 15));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
 		sequence.Clear ();
 
@@ -458,13 +458,23 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Bent Leg Pulses (Left)", 50, 10));
-		sequence.Add (new ExercisePart ("Bent Leg Pulses (Right)", 50, 10));
+		sequence.Add (new ExercisePart ("Straight Leg Pulses (Left)", 50, 10));
+		sequence.Add (new ExercisePart ("Straight Leg Pulses (Right)", 50, 10));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Fire Hydrant (Left)", 50, 10));
-		sequence.Add (new ExercisePart ("Fire Hydrant  (Right)", 50, 10));
+		sequence.Add (new ExercisePart ("Bent Leg Raises (Left)", 50, 10, "Bent Leg Raises"));
+		sequence.Add (new ExercisePart ("Bent Leg Raises (Right)", 50, 10, "Bent Leg Raises"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Bent Leg Pulses (Left)", 50, 10, "Bent Leg Pulses"));
+		sequence.Add (new ExercisePart ("Bent Leg Pulses (Right)", 50, 10, "Bent Leg Pulses"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Fire Hydrant (Left)", 50, 10, "Fire Hydrant"));
+		sequence.Add (new ExercisePart ("Fire Hydrant  (Right)", 50, 10, "Fire Hydrant"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
@@ -677,11 +687,20 @@ public class ExercisePart {
 	public string name;
 	public int length;
 	public int restlength;
+	public string clip = "Empty";
 
 	public ExercisePart (string name, int length, int restlength){
 		this.name = name;
 		this.length = length;
 		this.restlength = restlength;
+	}
+
+	public ExercisePart (string name, int length, int restlength, string clip)
+	{
+		this.name = name;
+		this.length = length;
+		this.restlength = restlength;
+		this.clip = clip;
 	}
 }
 

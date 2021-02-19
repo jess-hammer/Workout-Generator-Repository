@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class ImplementWorkout : MonoBehaviour
 {
 	public bool isRest = false;
-	public int index = 0;
 	private float totalTimeLeft;
 	private float totalDuration;
 	public Text textbox;
 	public Text nextTextbox;
 	public Timer timer;
+	public Image exerciseIcon;
+	private Animator anim;
 	Queue<ExercisePart> exerciseQueue;
 	Generator generator;
 	ExercisePart currentEx;
@@ -26,6 +27,8 @@ public class ImplementWorkout : MonoBehaviour
 		totalTimeLeft = generator.totalTimeLength;
 		totalDuration = generator.totalTimeLength;
 		exerciseQueue = convertToParts ();
+		currentEx = exerciseQueue.Dequeue ();
+		anim = exerciseIcon.GetComponent<Animator> ();
 	}
 
 	private Queue<ExercisePart> convertToParts()
@@ -71,19 +74,90 @@ public class ImplementWorkout : MonoBehaviour
 
 	public void skipWorkout()
 	{
+		if (exerciseQueue.Count <= 1) {
+			executeFinish ();
+			return;
+		}
+
+
 		totalTimeLeft -= timer.timeLeft + 1;
 
 		isRest = false;
-		goToNext ();
+		updateCurrent ();
+		playExercise ();
 
-		index++;
 	}
 
 	public void runWorkout ()
 	{
 
 		if (timer.isZero ()) {
-			goToNext ();
+			// check if finished
+			if (exerciseQueue.Count == 0) {
+				executeFinish ();
+				return;
+			}
+
+
+			if (!isRest) {
+				playExercise();
+				isRest = true;
+			} else {
+				playRest ();
+				isRest = false;
+				updateCurrent ();
+			}
+		}
+	}
+
+	public void playExercise()
+	{
+		if (currentEx == null || currentEx.length == 0) {
+			Debug.Log ("exited early");
+			return;
+		}
+
+		textbox.text = currentEx.name;
+		anim.Play (currentEx.clip);
+
+		if (exerciseQueue.Count > 0) {
+			nextTextbox.text = "Next up:  " + exerciseQueue.Peek ().name;
+		} else {
+			nextTextbox.text = "";
+		}
+
+		// reset timer
+		timer.setTimer (currentEx.length / 60, currentEx.length % 60);
+	}
+
+	public void playRest ()
+	{
+		if (currentEx == null || currentEx.restlength == 0) {
+			Debug.Log ("exited early");
+			return;
+		}
+
+		textbox.text = "Rest";
+
+		// reset timer
+		timer.setTimer (currentEx.restlength / 60, currentEx.restlength % 60);
+	}
+
+	public void executeFinish()
+	{
+		isFinished = true;
+		textbox.text = "You're all finished, well done!";
+		nextTextbox.text = "";
+		timer.hideTimer ();
+		anim.StopPlayback ();
+		exerciseIcon.sprite = null;
+
+	}
+
+	public void updateCurrent()
+	{
+		if (exerciseQueue.Count > 0) {
+			currentEx = exerciseQueue.Dequeue ();
 		}
 	}
 

@@ -16,6 +16,7 @@ public class ChangeTextToValue : MonoBehaviour
     void Start()
     {
 		textBox = GetComponent<Text> ();
+
 		userPrefs = GameObject.FindGameObjectWithTag ("System").GetComponent<UserPrefs> ();
 		ChangeValue (userPrefs.getValue(nameToUpdate));
     }

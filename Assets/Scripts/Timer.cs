@@ -39,6 +39,11 @@ public class Timer : MonoBehaviour
 	{
 		return timeLeft <= 0;
 	}
+
+	public void hideTimer ()
+	{
+		textBox.enabled = false;
+	}
 }
 
 /*

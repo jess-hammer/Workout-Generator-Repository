@@ -132,7 +132,7 @@ public class UserPrefs : MonoBehaviour
 			difficulty = value;
 			break;
 		case PrefName.Duration:
-			duration = value;
+			duration = Mathf.Clamp(value, 5, 60);
 			totalDuration = duration + warmup + cooldown;
 			break;
 		case PrefName.Warmup:
