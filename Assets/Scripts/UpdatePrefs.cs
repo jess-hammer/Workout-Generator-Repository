@@ -18,12 +18,12 @@ public class UpdatePrefs : MonoBehaviour {
 		} else if (this.TryGetComponent<Dropdown> (out Dropdown dropdown)) {
 			dropdown.value = userPrefs.getValue (nameToUpdate);
 		} else if (this.TryGetComponent<CustomDropdown> (out CustomDropdown customDropdown)) {
-			customDropdown.selectedItemIndex = userPrefs.getValue (nameToUpdate);
-			customDropdown.index = userPrefs.getValue (nameToUpdate);
+			//customDropdown.selectedItemIndex = userPrefs.getValue (nameToUpdate);
+			//customDropdown.index = userPrefs.getValue (nameToUpdate);
 		} else if (this.TryGetComponent<RadialSlider> (out RadialSlider radialSlider)) {
-			radialSlider.currentValue = userPrefs.getValue (nameToUpdate);
+			//radialSlider.currentValue = userPrefs.getValue (nameToUpdate);
 			//Debug.Log (userPrefs.getValue (nameToUpdate));
-			radialSlider.SliderValue = userPrefs.getValue (nameToUpdate);
+			//radialSlider.SliderValue = userPrefs.getValue (nameToUpdate);
 			//radialSlider.UpdateUI ();
 		} else {
 			Debug.Log (this.name + "is neither a toggle or slider lol");
