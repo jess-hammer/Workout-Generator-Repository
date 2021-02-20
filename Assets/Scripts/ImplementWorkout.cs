@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,8 @@ public class ImplementWorkout : MonoBehaviour
 	public bool isRest = false;
 	private float totalTimeLeft;
 	private float totalDuration;
-	public Text textbox;
-	public Text nextTextbox;
+	public TextMeshProUGUI textbox;
+	public TextMeshProUGUI nextTextbox;
 	public Timer timer;
 	public Image exerciseIcon;
 	private Animator anim;
