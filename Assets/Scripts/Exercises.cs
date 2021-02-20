@@ -248,31 +248,31 @@ public static class Exercises {
 		List<ExercisePart> sequence = new List<ExercisePart> ();
 
 		// MIDDLE---------------------------------------------------------------------------------------------
-		sequence.Add (new ExercisePart ("Crunches", 20, 10));
+		sequence.Add (new ExercisePart ("Crunches", 20, 10, "Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Easy, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Crunches", 50, 10));
+		sequence.Add (new ExercisePart ("Crunches", 50, 10, "Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Crunches", 70, 10));
+		sequence.Add (new ExercisePart ("Crunches", 70, 10, "Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Sit-ups", 45, 15));
+		sequence.Add (new ExercisePart ("Sit-ups", 45, 15, "Sit-ups"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Sit-ups", 60, 10));
+		sequence.Add (new ExercisePart ("Sit-ups", 60, 10, "Sit-ups"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Bicycle Crunches", 50, 10));
+		sequence.Add (new ExercisePart ("Bicycle Crunches", 50, 10, "Bicycle Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Bicycle Crunches", 70, 10));
+		sequence.Add (new ExercisePart ("Bicycle Crunches", 70, 10, "Bicycle Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
