@@ -409,11 +409,21 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Curtsy Lunges", 50, 10));
+		sequence.Add (new ExercisePart ("Alternating Curtsy Lunges", 50, 10, "Alternating Curtsy Lunges"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthCardio, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Curtsy Lunges (Weighted)", 45, 15));
+		sequence.Add (new ExercisePart ("Alternating Curtsy Lunges (Weighted)", 45, 15, "Alternating Curtsy Lunges (Weighted)"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Curtsy Lunges (Left)", 50, 10, "Curtsy Lunges"));
+		sequence.Add (new ExercisePart ("Curtsy Lunges (Right)", 50, 10, "Curtsy Lunges"));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, strength, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Weighted Curtsy Lunges (Left)", 45, 15, "Curtsy Lunges (Weighted)"));
+		sequence.Add (new ExercisePart ("Weighted Curtsy Lunges (Right)", 45, 15, "Curtsy Lunges (Weighted)"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
@@ -634,11 +644,11 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, allAreas, cardio, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Jumping Jacks", 50, 10));
+		sequence.Add (new ExercisePart ("Jumping Jacks", 50, 10, "Jumping Jacks"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, allAreas, cardio, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Jumping Jacks", 30, 10));
+		sequence.Add (new ExercisePart ("Jumping Jacks", 30, 10, "Jumping Jacks"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, allAreas, cardio, noEquipment));
 		sequence.Clear ();
 

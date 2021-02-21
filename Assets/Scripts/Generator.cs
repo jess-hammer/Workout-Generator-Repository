@@ -93,9 +93,12 @@ public class Generator : MonoBehaviour
 		int diff2 = exercise.difficulty;
 
 		// check difficulty
-		if (!(exercise.difficulty == 5 || diff1 == diff2 ||
+		if (!(diff2 == 5 || diff1 == diff2 ||
 			((diff2 == diff1 - 1 || diff2 == diff1 + 1) && randNum < 0.2))) {
 			return false; // incorrect difficulty
+		}
+		if (diff2 == 5 && diff1 < 2) {
+			return false;
 		}
 
 		// check body focus
