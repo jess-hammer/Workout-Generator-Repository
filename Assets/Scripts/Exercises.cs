@@ -298,17 +298,30 @@ public static class Exercises {
 
 		sequence.Add (new ExercisePart ("Oblique Crunches (Left)", 50, 10));
 		sequence.Add (new ExercisePart ("Oblique Crunches (Right)", 50, 10));
-		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Oblique Crunches (Left)", 30, 10));
-		sequence.Add (new ExercisePart ("Oblique Crunches (Right)", 30, 10));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Half Oblique Crunches (Left)", 40, 10));
-		sequence.Add (new ExercisePart ("Half Oblique Crunches (Right)", 40, 10));
+		sequence.Add (new ExercisePart ("Side Hip Raises (Left)", 50, 10, "Side Hip Raises"));
+		sequence.Add (new ExercisePart ("Side Hip Raises (Right)", 50, 10, "Side Hip Raises"));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Half Side Hip Raises (Left)", 50, 10, "Half Side Hip Raises"));
+		sequence.Add (new ExercisePart ("Half Side Hip Raises (Right)", 50, 10, "Half Side Hip Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, middle, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Weighted Side Hip Raises (Left)", 40, 10, "Weighted Side Hip Raises"));
+		sequence.Add (new ExercisePart ("Weighted Side Hip Raises (Right)", 40, 10, "Weighted Side Hip Raises"));
+		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, canBeSingle));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Back Bows", 45, 15, "Back Bows"));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Back Bows (Weighted)", 45, 15, "Weighted Back Bows"));
+		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, canBeSingle));
 		sequence.Clear ();
 
 		sequence.Add (new ExercisePart ("Jackknife Crunches", 45, 15));

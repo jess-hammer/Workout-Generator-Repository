@@ -37,15 +37,15 @@ public class ImplementWorkout : MonoBehaviour
 		Queue<ExercisePart> queue = new Queue<ExercisePart> ();
 		convertSegmentToParts (generator.warmupExercises, queue);
 		if (queue.Count > 0) {
-			queue.Enqueue (new ExercisePart ("Time for the main workout!", 10, 0));
+			queue.Enqueue (new ExercisePart ("Time for the main workout!", 10, 0, "Water Break"));
 		}
 		convertSegmentToParts (generator.exercises, queue);
 		if (queue.Count > 0 && generator.cooldownExercises.Length > 0) {
-			queue.Enqueue (new ExercisePart ("Great job, time to cool down", 10, 0));
+			queue.Enqueue (new ExercisePart ("Great job, time to cool down", 10, 0, "Water Break"));
 		}
 		convertSegmentToParts (generator.cooldownExercises, queue);
 
-		queue.Enqueue (new ExercisePart ("Finish", 0, 0));
+		queue.Enqueue (new ExercisePart ("Finish", 0, 0, "Finish"));
 		Debug.Log ("converted");
 		return queue;
 	}
@@ -119,6 +119,7 @@ public class ImplementWorkout : MonoBehaviour
 		}
 
 		textbox.text = currentEx.name;
+		exerciseIcon.enabled = true;
 		anim.Play (currentEx.clip);
 
 		if (exerciseQueue.Count > 0) {
@@ -139,7 +140,7 @@ public class ImplementWorkout : MonoBehaviour
 		}
 
 		textbox.text = "Rest";
-
+		exerciseIcon.enabled = false;
 		// reset timer
 		timer.setTimer (currentEx.restlength / 60, currentEx.restlength % 60);
 	}
@@ -150,8 +151,7 @@ public class ImplementWorkout : MonoBehaviour
 		textbox.text = "You're all finished, well done!";
 		nextTextbox.text = "";
 		timer.hideTimer ();
-		anim.StopPlayback ();
-		exerciseIcon.sprite = null;
+		anim.Play ("Finish");
 
 	}
 
