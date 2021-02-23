@@ -202,14 +202,14 @@ public class Generator : MonoBehaviour
 
 		// null check
 		if (exs == null) {
-			str += "-- No " + title + " --\n";
+			str += "\n   No " + title + "\n";
 			return str;
 		}
 
 		
 		int count = 1;
 		if (exs.Length > 0) {
-			str += "-- " + title + " --\n";
+			str += "\n   " + title + ":\n";
 
 			for (int i = 0; i < exs.Length; i++) {
 				for (int j = 0; j < exs [i].sequence.Length; j++) {
@@ -220,7 +220,7 @@ public class Generator : MonoBehaviour
 			}
 
 		} else {
-			str += "-- No " + title + " --\n";
+			str += "\n   No " + title + "\n";
 		}
 		return str;
 	}

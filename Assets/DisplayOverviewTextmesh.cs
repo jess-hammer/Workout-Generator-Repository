@@ -9,6 +9,9 @@ public class DisplayOverviewTextmesh : MonoBehaviour
 	public UserPrefs userPrefs;
 	public TextMeshProUGUI duration;
 	public TextMeshProUGUI difficulty;
+	public TextMeshProUGUI focus;
+	public TextMeshProUGUI equipment;
+	public TextMeshProUGUI type;
 	public TextMeshProUGUI workout;
 
 	// Start is called before the first frame update
@@ -17,6 +20,9 @@ public class DisplayOverviewTextmesh : MonoBehaviour
 		generator.CreateWorkout ();
 		difficulty.text = "Difficulty: " + userPrefs.difficultyToString ();
 		duration.text = "Duration: " + userPrefs.totalDuration + " min";
+		focus.text = "Focus: " + userPrefs.focusAreaToString();
+		equipment.text = "Equipment: " + userPrefs.ListToString<Equipment> (userPrefs.equipment);
+		type.text = "Workout Type: " + userPrefs.ListToString<Type>(userPrefs.workoutType);
 		workout.text = generator.toString ();
 	}
 }

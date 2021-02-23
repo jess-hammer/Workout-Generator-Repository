@@ -102,12 +102,15 @@ namespace Michsky.UI.ModernUIPack
             foreach (Transform child in itemParent)
                 GameObject.Destroy(child.gameObject);
 
+			
             for (int i = 0; i < dropdownItems.Count; ++i)
             {
                 GameObject go = Instantiate(itemObject, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 go.transform.SetParent(itemParent, false);
 
-                setItemText = go.GetComponentInChildren<TextMeshProUGUI>();
+				
+
+				setItemText = go.GetComponentInChildren<TextMeshProUGUI>();
                 textHelper = dropdownItems[i].itemName;
                 setItemText.text = textHelper;
 
@@ -116,12 +119,14 @@ namespace Michsky.UI.ModernUIPack
 
                 iHelper = i;
 
-                itemToggle.onValueChanged.AddListener(UpdateToggle);
 
-                if (dropdownItems[i].toggleEvents != null)
-                    itemToggle.onValueChanged.AddListener(dropdownItems[i].toggleEvents.Invoke);
+				itemToggle.onValueChanged.AddListener (UpdateToggle);
 
-                if (saveSelected == true)
+
+				if (dropdownItems [i].toggleEvents != null)
+					itemToggle.onValueChanged.AddListener (dropdownItems [i].toggleEvents.Invoke);
+
+				if (saveSelected == true)
                 {
                     if (invokeAtStart == true)
                     {
@@ -138,7 +143,8 @@ namespace Michsky.UI.ModernUIPack
 
                 else
                 {
-                    if (invokeAtStart == true)
+					
+					if (invokeAtStart == true)
                     {
                         if (dropdownItems[i].isOn == true)
                             dropdownItems[i].toggleEvents.Invoke(true);
@@ -149,11 +155,13 @@ namespace Michsky.UI.ModernUIPack
 
                     else
                     {
-                        if (dropdownItems[i].isOn == true)
-                            itemToggle.isOn = true;
-                        else
-                            itemToggle.isOn = false;
-                    }
+
+						if (dropdownItems [i].isOn == true) {
+							itemToggle.isOn = true;
+						} else
+							itemToggle.isOn = false;
+						
+					}
                 }
 
                 if (invokeAtStart == true)
@@ -164,7 +172,9 @@ namespace Michsky.UI.ModernUIPack
                     else
                         dropdownItems[i].toggleEvents.Invoke(false);
                 }
-            }
+
+				
+			}
 
             currentListParent = transform.parent;
         }
