@@ -30,6 +30,12 @@ public class UserPrefs : MonoBehaviour
 
 		equipment.Clear();
 		workoutType.Clear ();
+
+		equipment.Add (Equipment.NoEquipment);
+		equipment.Add (Equipment.Dumbbells);
+
+		workoutType.Add (Type.Cardio);
+		workoutType.Add (Type.Strength);
 	}
 
 	public bool isValid()
