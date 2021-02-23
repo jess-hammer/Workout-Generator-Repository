@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Michsky.UI.ModernUIPack;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class ImplementWorkout : MonoBehaviour
 	public TextMeshProUGUI nextTextbox;
 	public Timer timer;
 	public Image exerciseIcon;
+	public ProgressBar progressBar;
 	private Animator anim;
 	Queue<ExercisePart> exerciseQueue;
 	Generator generator;
@@ -83,7 +85,7 @@ public class ImplementWorkout : MonoBehaviour
 
 		totalTimeLeft -= timer.timeLeft + 1;
 
-		isRest = false;
+		isRest = true;
 		updateCurrent ();
 		playExercise ();
 
@@ -99,13 +101,14 @@ public class ImplementWorkout : MonoBehaviour
 				return;
 			}
 
-
 			if (!isRest) {
-				playExercise();
 				isRest = true;
+				playExercise ();
+				
 			} else {
-				playRest ();
 				isRest = false;
+				playRest ();
+				
 				updateCurrent ();
 			}
 		}
@@ -113,8 +116,10 @@ public class ImplementWorkout : MonoBehaviour
 
 	public void playExercise()
 	{
-		if (currentEx == null || currentEx.length == 0) {
-			Debug.Log ("exited early");
+		//Debug.Log ("Playing excercise. Is rest = " + isRest);
+		if (currentEx == null || currentEx.length <= 0.01) {
+			Debug.Log ("exited excercise early");
+			timer.setTimer (0, 0);
 			return;
 		}
 
@@ -130,12 +135,15 @@ public class ImplementWorkout : MonoBehaviour
 
 		// reset timer
 		timer.setTimer (currentEx.length / 60, currentEx.length % 60);
+		resetProgressBar (currentEx.length);
 	}
 
 	public void playRest ()
 	{
-		if (currentEx == null || currentEx.restlength == 0) {
-			Debug.Log ("exited early");
+		//Debug.Log ("Playing rest. Is rest = " + isRest);
+		if (currentEx == null || currentEx.restlength <= 0.01) {
+			Debug.Log ("exited rest early");
+			timer.setTimer (0, 0);
 			return;
 		}
 
@@ -143,6 +151,7 @@ public class ImplementWorkout : MonoBehaviour
 		exerciseIcon.enabled = false;
 		// reset timer
 		timer.setTimer (currentEx.restlength / 60, currentEx.restlength % 60);
+		resetProgressBar (currentEx.restlength);
 	}
 
 	public void executeFinish()
@@ -160,6 +169,12 @@ public class ImplementWorkout : MonoBehaviour
 		if (exerciseQueue.Count > 0) {
 			currentEx = exerciseQueue.Dequeue ();
 		}
+	}
+
+	public void resetProgressBar(int time)
+	{
+		progressBar.currentPercent = 0;
+		progressBar.speed = 100/time;
 	}
 
 	public void goToNext()
