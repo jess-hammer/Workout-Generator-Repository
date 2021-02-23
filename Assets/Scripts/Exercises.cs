@@ -509,11 +509,11 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Bridges", 50, 10));
+		sequence.Add (new ExercisePart ("Bridges", 50, 10, "Bridges"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Bridges (Weighted)", 50, 10));
+		sequence.Add (new ExercisePart ("Bridges (Weighted)", 50, 10, "Bridges (Weighted)"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 

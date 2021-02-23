@@ -33,11 +33,11 @@ public class ToggleInSameScene : MonoBehaviour
 
 	public void Back ()
 	{
-		if (userPrefs.isValid ()) {
+		//if (userPrefs.isValid ()) {
 			setArrayActive (objects [curPos], false);
 			setArrayActive (objects [curPos - 1], true);
 			curPos -= 1;
-		}
+		//}
 	}
 
 	

@@ -101,20 +101,43 @@ public class Generator : MonoBehaviour
 			return false;
 		}
 
-		// check body focus
-		for (int i = 0; i < exercise.bodyFocus.Length; i++) {
-			if (userPrefs.upperFocus && exercise.bodyFocus[i] == BodyFocus.Upper) {
-				return true;
-			}
-			if (userPrefs.middleFocus && exercise.bodyFocus [i] == BodyFocus.Middle) {
-				return true;
-			}
-			if (userPrefs.lowerFocus && exercise.bodyFocus [i] == BodyFocus.Lower) {
+		// check for correct body focus, at least one must match
+		if (!((userPrefs.upperFocus && Contains (exercise.bodyFocus, BodyFocus.Upper)) ||
+			(userPrefs.middleFocus && Contains (exercise.bodyFocus, BodyFocus.Middle)) ||
+			(userPrefs.lowerFocus && Contains (exercise.bodyFocus, BodyFocus.Lower)))) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public bool Contains(BodyFocus [] array, BodyFocus item)
+	{
+		for (int i = 0; i < array.Length; i++) {
+			if (array[i] == item) {
 				return true;
 			}
 		}
-		
+		return false;
+	}
 
+	public bool Contains (Equipment [] array, Equipment item)
+	{
+		for (int i = 0; i < array.Length; i++) {
+			if (array [i] == item) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public bool Contains (Type [] array, Type item)
+	{
+		for (int i = 0; i < array.Length; i++) {
+			if (array [i] == item) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -124,27 +147,25 @@ public class Generator : MonoBehaviour
 		int diff1 = userPrefs.difficulty;
 		int diff2 = exercise.difficulty;
 
-		// check difficulty
-		if (!(exercise.difficulty == 5 || diff1 == diff2 || 
-			(randNum < 0.6 && (diff2 == diff1 - 1 || diff2 == diff1 + 1) ))) {
+		
+		if (diff1 == 4) { //there are no challenging warmups
+			diff1 = 3;
+		}
+
+		// check difficulty -- difficulty doesn't really matter for warmup?
+		if (!(diff2 == 5 || diff1 == diff2 || 
+			(randNum < 0.6 && (diff2 == diff1 - 1 || diff2 == diff1 + 1)))) {
 			return false; // incorrect difficulty
 		}
 
-		// check body focus
-		for (int i = 0; i < exercise.bodyFocus.Length; i++) {
-			if (userPrefs.upperFocus && exercise.bodyFocus [i] == BodyFocus.Upper) {
-				return true;
-			}
-			if (userPrefs.middleFocus && exercise.bodyFocus [i] == BodyFocus.Middle) {
-				return true;
-			}
-			if (userPrefs.lowerFocus && exercise.bodyFocus [i] == BodyFocus.Lower) {
-				return true;
-			}
+		// check for correct body focus, at least one must match
+		if (!((userPrefs.upperFocus && Contains (exercise.bodyFocus, BodyFocus.Upper)) ||
+			(userPrefs.middleFocus && Contains (exercise.bodyFocus, BodyFocus.Middle)) ||
+			(userPrefs.lowerFocus && Contains (exercise.bodyFocus, BodyFocus.Lower)))) {
+			return false;
 		}
 
-
-		return false;
+		return true;
 	}
 
 	public static void ShuffleArray<T> (T [] array)

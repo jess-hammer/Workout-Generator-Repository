@@ -1,31 +1,68 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Michsky.UI.ModernUIPack;
 using UnityEngine;
 
 
 public class UserPrefs : MonoBehaviour
 {
+	
+
 	public int difficulty = 2;
 	public int duration = 15;
 	public int warmup = 5;
 	public int cooldown = 5;
 	public int totalDuration;
-	
 
 	public bool upperFocus = true;
 	public bool middleFocus = true;
 	public bool lowerFocus = true;
 
+	public List<Equipment> equipment = new List<Equipment> ();
+	public List<Type> workoutType = new List<Type> ();
+
+	public NotificationManager myNotification​;
+
 	private void Awake ()
 	{
 		totalDuration = duration + cooldown + warmup;
+
+		equipment.Clear();
+
+		//equipment.Add (Equipment.NoEquipment);
+		//equipment.Add (Equipment.Dumbbells);
+
+		//workoutType.Add (Type.Cardio);
+		//workoutType.Add (Type.Strength);
 	}
 
 	public bool isValid()
 	{
 		if (!upperFocus && !middleFocus && !lowerFocus) {
-			Debug.Log ("You need to select a target area");
+			myNotification.description = "Please select at least one focus area";
+			myNotification.OpenNotification ();
+			return false;
+		}
+
+		if (equipment.Count <= 0) {
+			myNotification.description = "Select at least one equipment option.\nSelect \"No Equipment\" if you wanted \nno equipment";
+			myNotification.OpenNotification ();
+			return false;
+		}
+		if (workoutType.Count <= 0) {
+			myNotification.description = "Please select at least one workout type";
+			myNotification.OpenNotification ();
+			return false;
+		}
+		if (difficulty > 4 || difficulty < 0) {
+			myNotification.description = "Not sure how you got here, but you \nhave an invalid difficulty";
+			myNotification.OpenNotification ();
+			return false;
+		}
+		if (duration < 0 || totalDuration < 0 || warmup < 0 || cooldown < 0) {
+			myNotification.description = "Invalid duration! It should not \nbe negative";
+			myNotification.OpenNotification ();
 			return false;
 		}
 		return true;
