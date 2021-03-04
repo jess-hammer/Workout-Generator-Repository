@@ -42,27 +42,32 @@ public class UserPrefs : MonoBehaviour
 	{
 		if (!upperFocus && !middleFocus && !lowerFocus) {
 			myNotification.description = "Please select at least one focus area";
+			myNotification.UpdateUI ();
 			myNotification.OpenNotification ();
 			return false;
 		}
 
 		if (equipment.Count <= 0) {
 			myNotification.description = "Select at least one equipment option.\nSelect \"No Equipment\" if you wanted \nno equipment";
+			myNotification.UpdateUI ();
 			myNotification.OpenNotification ();
 			return false;
 		}
 		if (workoutType.Count <= 0) {
 			myNotification.description = "Please select at least one workout type";
+			myNotification.UpdateUI ();
 			myNotification.OpenNotification ();
 			return false;
 		}
 		if (difficulty > 4 || difficulty < 0) {
 			myNotification.description = "Not sure how you got here, but you \nhave an invalid difficulty";
+			myNotification.UpdateUI ();
 			myNotification.OpenNotification ();
 			return false;
 		}
 		if (duration < 0 || totalDuration < 0 || warmup < 0 || cooldown < 0) {
 			myNotification.description = "Invalid duration! It should not \nbe negative";
+			myNotification.UpdateUI ();
 			myNotification.OpenNotification ();
 			return false;
 		}
