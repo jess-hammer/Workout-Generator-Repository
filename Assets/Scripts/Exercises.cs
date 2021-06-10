@@ -158,25 +158,25 @@ public static class Exercises {
 		List<ExercisePart> sequence = new List<ExercisePart> ();
 
 		// UPPER---------------------------------------------------------------------------------------------
-		sequence.Add (new ExercisePart ("Half Push-ups", 30, 30)); //not drawn
+		sequence.Add (new ExercisePart ("Half Push-ups", 30, 30, "Half Pushups"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Push-ups", 20, 20)); //not drawn
+		sequence.Add (new ExercisePart ("Push-ups", 20, 20, "Pushups"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Push-ups", 30, 20)); //not drawn
+		sequence.Add (new ExercisePart ("Push-ups", 30, 20, "Pushups"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		ExercisePart pushUpHIIT = new ExercisePart ("Push-ups", 20, 10); //not drawn
+		ExercisePart pushUpHIIT = new ExercisePart ("Push-ups", 20, 10, "Pushups");
 		sequence.Add (pushUpHIIT);
 		sequence.Add (pushUpHIIT);
 		exs.Add (new Exercise (sequence, Difficulty.Tough, upper, strengthHIIT, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Push-ups", 40, 20)); //not drawn
+		sequence.Add (new ExercisePart ("Push-ups", 40, 20, "Pushups"));
 		exs.Add (new Exercise (sequence, Difficulty.Challenging, upper, strength, noEquipment));
 		sequence.Clear ();
 
