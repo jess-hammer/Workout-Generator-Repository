@@ -676,6 +676,23 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.Easy, allAreas, cardio, noEquipment));
 		sequence.Clear ();
 
+		sequence.Add (new ExercisePart ("Head To Knee Stretch (Right)", 20, 5, "Head To Knee Stretch"));
+		sequence.Add (new ExercisePart ("Head To Knee Stretch (Left)", 20, 5, "Head To Knee Stretch"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, allAreas, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Toe Reach Stretch", 20, 5, "Toe Reach Stretch"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, allAreas, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Butterfly Stretch", 25, 5, "Butterfly Stretch"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, pilatesStretching, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Glute Stretch (Left)", 20, 5, "Glute Stretch"));
+		sequence.Add (new ExercisePart ("Glute Stretch (Right)", 20, 5, "Glute Stretch"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, pilatesStretching, noEquipment));
+		sequence.Clear ();
 
 	}
 }
