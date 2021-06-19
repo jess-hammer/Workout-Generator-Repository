@@ -180,33 +180,33 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.Challenging, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Bicep curls", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Bicep Curls", 50, 10, "Bicep Curls"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Tricep dips", 20, 20)); //not drawn
+		sequence.Add (new ExercisePart ("Tricep Dips", 20, 20, "Tricep Dips"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Tricep dips", 40, 20)); //not drawn
+		sequence.Add (new ExercisePart ("Tricep Dips", 40, 20, "Tricep Dips"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Tricep dips", 60, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Tricep Dips", 60, 10, "Tricep Dips"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, upper, strength, noEquipment));
 		sequence.Clear ();
 
-		ExercisePart triDipsHIIT = new ExercisePart ("Tricep dips", 20, 10); //not drawn
+		ExercisePart triDipsHIIT = new ExercisePart ("Tricep Dips HIIT", 20, 10, "Tricep Dips");
 		sequence.Add (triDipsHIIT);
 		sequence.Add (triDipsHIIT);
 		exs.Add (new Exercise (sequence, Difficulty.Tough, upper, strengthHIIT, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Skull Crushers", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Skull Crushers", 50, 10, "Skull Crushers"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, canBeSingle));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Chest Press", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Chest Press", 45, 15, "Chest Press"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
 		sequence.Clear ();
 
