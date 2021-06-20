@@ -276,28 +276,36 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Half-plank", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Half Plank", 50, 10, "Half Plank"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Plank", 60, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Plank", 60, 10, "Plank"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Plank Taps", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Tough, upperMid, strength, noEquipment));
+		sequence.Add (new ExercisePart ("Reverse Plank", 60, 10, "Reverse Plank"));
+		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Hip Dips", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strength, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Plank", 120, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Plank", 120, 10, "Plank"));
 		exs.Add (new Exercise (sequence, Difficulty.Challenging, middle, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Oblique Crunches (Left)", 50, 10)); //not drawn
-		sequence.Add (new ExercisePart ("Oblique Crunches (Right)", 50, 10));
+		//sequence.Add (new ExercisePart ("Plank Taps", 50, 10)); //not drawn
+		//exs.Add (new Exercise (sequence, Difficulty.Tough, upperMid, strength, noEquipment));
+		//sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Hip Dips", 50, 10, "Hip Dips"));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strength, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Hip Dips", 30, 10, "Hip Dips"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, middle, strength, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Oblique Crunches (Left)", 50, 10, "Oblique Crunches"));
+		sequence.Add (new ExercisePart ("Oblique Crunches (Right)", 50, 10, "Oblique Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
@@ -316,7 +324,7 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, canBeSingle));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Back Bows", 45, 15, "Back Bows")); //not drawn
+		sequence.Add (new ExercisePart ("Back Bows", 45, 15, "Back Bows"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
 
