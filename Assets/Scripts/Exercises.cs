@@ -395,21 +395,39 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Alternating Lunges", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, strengthCardio, noEquipment));
+		sequence.Add (new ExercisePart ("Alternating Lunges", 45, 15, "Alternating Lunges"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthCardio, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Alternating Lunges (Weighted)", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Alternating Lunges (Weighted)", 45, 15, "Alternating Lunges"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Lunges (Left)", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Lunges (Left)", 50, 10, "Lunges"));
 		sequence.Add (new ExercisePart ("Lunges (Right)", 50, 10));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Weighted Lunges (Left)", 45, 15)); //not drawn
-		sequence.Add (new ExercisePart ("Weighted Lunges (Right)", 45, 15));
+		sequence.Add (new ExercisePart ("Weighted Lunges (Left)", 45, 15, "Lunges"));
+		sequence.Add (new ExercisePart ("Weighted Lunges (Right)", 45, 15, "Lunges"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Alternating Reverse Lunges", 45, 15, "Alternating Reverse Lunges"));
+		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthCardio, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Alternating Reverse Lunges (Weighted)", 45, 15, "Alternating Reverse Lunges"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Reverse Lunges (Left)", 50, 10, "Reverse Lunges"));
+		sequence.Add (new ExercisePart ("Reverse Lunges (Right)", 50, 10, "Reverse Lunges"));
+		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, strength, noEquipment));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Weighted Reverse Lunges (Left)", 45, 15, "Reverse Lunges"));
+		sequence.Add (new ExercisePart ("Weighted Reverse Lunges (Right)", 45, 15, "Reverse Lunges"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
@@ -453,30 +471,18 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Alternating Side Leg Raises (Standing)", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Easy, lower, strengthPilates, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Standing Side Leg Raises (Left)", 45, 15)); //not drawn
-		sequence.Add (new ExercisePart ("Standing Side Leg Raises (Right)", 45, 15));
+		sequence.Add (new ExercisePart ("Standing Side Leg Raises (Left)", 45, 15, "Standing Side Leg Raises"));
+		sequence.Add (new ExercisePart ("Standing Side Leg Raises (Right)", 45, 15, "Standing Side Leg Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Alternating Back Leg Raises (Standing)", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Easy, lower, strengthPilates, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Standing Back Leg Raises (Left)", 45, 15)); //not drawn
-		sequence.Add (new ExercisePart ("Standing Back Leg Raises (Right)", 45, 15));
+		sequence.Add (new ExercisePart ("Standing Back Leg Raises (Left)", 45, 15, "Back Leg Raises"));
+		sequence.Add (new ExercisePart ("Standing Back Leg Raises (Right)", 45, 15, "Back Leg Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Alternating Front Leg Raises (Standing)", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Easy, lower, strengthPilates, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Standing Front Leg Raises (Left)", 45, 15)); //not drawn
-		sequence.Add (new ExercisePart ("Standing Front Leg Raises (Right)", 45, 15));
+		sequence.Add (new ExercisePart ("Standing Front Leg Raises (Left)", 45, 15, "Front Leg Raises"));
+		sequence.Add (new ExercisePart ("Standing Front Leg Raises (Right)", 45, 15, "Front Leg Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
@@ -505,11 +511,11 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Calf Raises", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Calf Raises", 50, 10, "Calf Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Calf Raises (Weighted)", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Calf Raises (Weighted)", 50, 10, "Calf Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, lower, strength, anyWeights));
 		sequence.Clear ();
 
@@ -603,8 +609,8 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.Easy, middle, pilatesStretching, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Leg Swings (Right)", 45, 5)); //not drawn
-		sequence.Add (new ExercisePart ("Leg Swings (Left)", 45, 10));
+		sequence.Add (new ExercisePart ("Leg Swings (Right)", 45, 5, "Leg Swings"));
+		sequence.Add (new ExercisePart ("Leg Swings (Left)", 45, 10, "Leg Swings"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, stretchingCardio, noEquipment));
 		sequence.Clear ();
 

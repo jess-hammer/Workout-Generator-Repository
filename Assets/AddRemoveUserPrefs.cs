@@ -69,15 +69,15 @@ public class AddRemoveUserPrefs : MonoBehaviour
 			if (!list.Contains(type)) {
 				list.Add (type);
 				//Debug.Log ("Successfully added");
-			} else {
+			} /*else {
 				Debug.Log ("Tried to add " + text + " to list when it's already there");
-			}
+			}*/
 		} else {
 			if (list.Contains (type)) {
 				list.Remove (type);
-			} else {
+			} /*else {
 				Debug.Log ("Tried to remove " + text + " from list when it's already gone");
-			}
+			}*/
 		}
 	}
 
@@ -87,15 +87,15 @@ public class AddRemoveUserPrefs : MonoBehaviour
 			if (!list.Contains (type)) {
 				list.Add (type);
 				//Debug.Log ("Successfully added");
-			} else {
+			} /*else {
 				Debug.Log ("Tried to add " + text + " to list when it's already there");
-			}
+			}*/
 		} else {
 			if (list.Contains (type)) {
 				list.Remove (type);
-			} else {
+			} /*else {
 				Debug.Log ("Tried to remove " + text + " from list when it's already gone");
-			}
+			}*/
 		}
 	}
 }
