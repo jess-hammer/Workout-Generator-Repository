@@ -153,11 +153,11 @@ public static class Exercises {
 
 	}
 
+	// UPPER---------------------------------------------------------------------------------------------
 	private static void initialiseUpper (List<Exercise> exs)
 	{
 		List<ExercisePart> sequence = new List<ExercisePart> ();
 
-		// UPPER---------------------------------------------------------------------------------------------
 		sequence.Add (new ExercisePart ("Half Push-ups", 30, 30, "Half Pushups"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, upper, strength, noEquipment));
 		sequence.Clear ();
@@ -202,48 +202,60 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, canBeSingle));
 		sequence.Clear ();
 
+		sequence.Add (new ExercisePart ("Overhead Tricep Extensions", 50, 10, "Tricep Extensions"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, canBeSingle));
+		sequence.Clear ();
+
 		sequence.Add (new ExercisePart ("Chest Press", 45, 15, "Chest Press"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Reverse fly", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Lateral Raises (Without Weights)", 50, 10, "Lateral Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Reverse fly (Weighted)", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Lateral Raises", 45, 15, "Lateral Raises (Weighted)"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, sepUpper));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Lateral raises", 50, 10, "Lateral Raises"));
+		sequence.Add (new ExercisePart ("Reverse Fly (Without Weights)", 50, 10, "Reverse Fly"));
 		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Lateral raises (Weighted)", 45, 15, "Lateral Raises (Weighted)"));
+		sequence.Add (new ExercisePart ("Reverse Fly", 45, 15, "Reverse Fly"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, sepUpper));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Chest Fly", 50, 10)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, strengthPilates, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Chest Fly (Weighted)", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Chest Fly", 45, 15, "Chest Fly"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Shoulder Press", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Shoulder Press (Without Weights)", 50, 10, "Shoulder Press"));
 		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Shoulder Press (Weighted)", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Shoulder Press", 45, 15, "Shoulder Press"));
 		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Front Raises", 45, 15, "Front Raises"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, generalUpper));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Bent Rows", 45, 15, "Bent Rows"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, sepUpper));
+		sequence.Clear ();
+
+		sequence.Add (new ExercisePart ("Tricep Kickbacks", 45, 15, "Tricep Kickbacks"));
+		exs.Add (new Exercise (sequence, Difficulty.DependsOnWeight, upper, strength, sepUpper));
 		sequence.Clear ();
 	}
 
+	// MIDDLE---------------------------------------------------------------------------------------------
 	private static void initialiseMiddle (List<Exercise> exs)
 	{
 		List<ExercisePart> sequence = new List<ExercisePart> ();
 
-		// MIDDLE---------------------------------------------------------------------------------------------
 		sequence.Add (new ExercisePart ("Crunches", 20, 10, "Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Easy, middle, strengthPilates, noEquipment));
 		sequence.Clear ();
@@ -330,10 +342,6 @@ public static class Exercises {
 
 		sequence.Add (new ExercisePart ("Jackknife Crunches", 45, 15)); //not drawn
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middleLow, strength, noEquipment));
-		sequence.Clear ();
-
-		sequence.Add (new ExercisePart ("Jackknife Crunches", 60, 15)); //not drawn
-		exs.Add (new Exercise (sequence, Difficulty.Challenging, middleLow, strength, noEquipment));
 		sequence.Clear ();
 
 		sequence.Add (new ExercisePart ("Jackknife Crunches (Weighted)", 45, 15)); //not drawn
