@@ -10525,7 +10525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da29d240a55b943c08240bb29564a595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: MainScreen
+  scene: Workout
 --- !u!1001 &1537784626
 PrefabInstance:
   m_ObjectHideFlags: 0

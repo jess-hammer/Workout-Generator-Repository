@@ -412,7 +412,7 @@ public static class Exercises {
 		sequence.Clear ();
 
 		sequence.Add (new ExercisePart ("Lunges (Left)", 50, 10, "Lunges"));
-		sequence.Add (new ExercisePart ("Lunges (Right)", 50, 10));
+		sequence.Add (new ExercisePart ("Lunges (Right)", 50, 10, "Lunges"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, lower, strength, noEquipment));
 		sequence.Clear ();
 
