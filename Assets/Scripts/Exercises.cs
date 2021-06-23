@@ -340,35 +340,35 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middle, strengthPilates, canBeSingle));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Jackknife Crunches", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Jackknife Crunches", 45, 15, "Jacknife Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middleLow, strength, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Jackknife Crunches (Weighted)", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Jackknife Crunches (Weighted)", 45, 15, "Jacknife Crunches"));
 		exs.Add (new Exercise (sequence, Difficulty.Challenging, allAreas, strength, canBeSingle));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Lying-down Leg Raises", 40, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Lying-down Leg Raises", 40, 15, "Lying Leg Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.Moderate, middleLow, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Lying-down Leg Raises", 60, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Lying-down Leg Raises", 60, 15, "Lying Leg Raises"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, middleLow, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Russian Twists (Weighted)", 50, 10)); //not drawn
+		sequence.Add (new ExercisePart ("Russian Twists (Weighted)", 50, 10, "Russian Twists"));
 		exs.Add (new Exercise (sequence, Difficulty.Tough, upperMid, strengthPilates, canBeSingle));
 		sequence.Clear ();
 		 
-		sequence.Add (new ExercisePart ("Russian Twists", 45, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Russian Twists", 45, 15, "Russian Twists"));
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, upperMid, strengthPilates, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Mountain Climbers", 30, 15)); //not drawn
+		sequence.Add (new ExercisePart ("Mountain Climbers", 30, 15, "Mountain Climbers"));
 		exs.Add (new Exercise (sequence, Difficulty.Challenging, allAreas, strengthCardio, noEquipment));
 		sequence.Clear ();
 
-		ExercisePart mClimbers = new ExercisePart ("Mountain Climbers", 20, 10); //not drawn
+		ExercisePart mClimbers = new ExercisePart ("Mountain Climbers", 20, 10, "Mountain Climbers");
 		sequence.Add (mClimbers);
 		sequence.Add (mClimbers);
 		exs.Add (new Exercise (sequence, Difficulty.Challenging, allAreas, strengthCardioHIIT, noEquipment));
