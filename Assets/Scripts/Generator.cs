@@ -153,16 +153,24 @@ public class Generator : MonoBehaviour
 		}
 
 		// check difficulty -- difficulty doesn't really matter for warmup?
-		if (!(diff2 == 5 || diff1 == diff2 || 
+		/*if (!(diff2 == 5 || diff1 == diff2 || 
 			(randNum < 0.6 && (diff2 == diff1 - 1 || diff2 == diff1 + 1)))) {
 			return false; // incorrect difficulty
+		}*/
+
+		if (!(diff2 <= diff1 + 1 && diff2 >= diff1 - 2)) {
+			return false;
 		}
 
 		// check for correct body focus, at least one must match
 		if (!((userPrefs.upperFocus && Contains (exercise.bodyFocus, BodyFocus.Upper)) ||
 			(userPrefs.middleFocus && Contains (exercise.bodyFocus, BodyFocus.Middle)) ||
 			(userPrefs.lowerFocus && Contains (exercise.bodyFocus, BodyFocus.Lower)))) {
-			return false;
+
+			// small chance to just include it anyway
+			randNum = UnityEngine.Random.value;
+			if (randNum < 0.1)
+				return false;
 		}
 
 		return true;
