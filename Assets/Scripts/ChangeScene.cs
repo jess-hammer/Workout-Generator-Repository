@@ -6,15 +6,21 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
 	public string scene;
+	//public float delayRemaining;
 
 	public void GotoScene ()
 	{
 		if (scene == "Menu") {
 			DestroySystem ();
 		}
-		SceneManager.LoadScene (scene, LoadSceneMode.Single);
-		
+		//if (delayRemaining <= 0)
+			SceneManager.LoadScene (scene, LoadSceneMode.Single);
 	}
+
+	/*private void Update ()
+	{
+		delayRemaining -= Time.deltaTime;
+	}*/
 
 	public void DestroySystem()
 	{

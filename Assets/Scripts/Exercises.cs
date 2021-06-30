@@ -577,7 +577,8 @@ public static class Exercises {
 		exs.Add (new Exercise (sequence, Difficulty.LowImpact, lower, stretching, noEquipment));
 		sequence.Clear ();
 
-		sequence.Add (new ExercisePart ("Big Arm Circles", 20, 5, "Big Arm Circles"));
+		sequence.Add (new ExercisePart ("Big Arm Circles Clockwise", 10, 5, "Arm Circles Cwise"));
+		sequence.Add (new ExercisePart ("Big Arm Circles Anti-Clockwise", 10, 5, "Arm Circles CCwise"));
 		exs.Add (new Exercise (sequence, Difficulty.Easy, upper, pilatesStretching, noEquipment));
 		sequence.Clear ();
 

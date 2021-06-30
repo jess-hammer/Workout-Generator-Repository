@@ -7,12 +7,18 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 	public float timeLeft = 0; // in seconds
+	public Color secondaryColour;
 	public Text textBox;
+	public AudioSource timerEndAudio;
+	public AudioSource timerBeepAudio;
 	private int prevMin;
 	private int prevSec;
+	private int changeColourAt = 3;
 
 	public void setTimer (int minutes,  int seconds) {
 		timeLeft = (minutes * 60) + seconds + 0.99f;
+		textBox.color = Color.white;
+		
 	}
 
 	private void Start () {
@@ -30,15 +36,32 @@ public class Timer : MonoBehaviour
 			textBox.text = curMin + ":" + curSec.ToString ("00");
 		}
 
+		// change colour to red when timer low
+		if (curSec <= changeColourAt && curMin == 0 && curSec > 0) {
+			// play tick sound
+			if (curSec != prevSec) {
+				textBox.color = secondaryColour;
+				timerBeepAudio.Play ();
+			}
+		}
+
+		if (curSec == 0 && curMin == 0) {
+			if (curSec != prevSec) {
+				timerEndAudio.Play ();
+			}
+		}
+
 		if (timeLeft > 0) {
 			timeLeft -= Time.deltaTime;
-		} 
-    }
+		}
+
+		prevSec = curSec;
+	}
 
 	public bool isZero()
 	{
 		return timeLeft <= 0;
-	}
+	} 
 
 	public void hideTimer ()
 	{
