@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class Generator : MonoBehaviour
@@ -10,7 +7,7 @@ public class Generator : MonoBehaviour
 	public Exercise [] warmupExercises;
 	public Exercise [] cooldownExercises;
 	public Exercise [] exercises;
-	public float totalTimeLength = 0;
+	public float totalTimeLength;
 	private UserPrefs userPrefs;
 	public int seed;
 	
@@ -18,11 +15,10 @@ public class Generator : MonoBehaviour
 	public void Start ()
 	{
 		userPrefs = GetComponent<UserPrefs> ();
-		seed = UnityEngine.Random.Range (-10000, 10000);
-		UnityEngine.Random.InitState (seed);
+		seed = Random.Range (-10000, 10000);
+		Random.InitState (seed);
 
 		if (!Exercises.isInitalised) {
-			//Exercises.generateAllExerciseList ();
 			Exercises.Initialise ();
 		}
 	}
@@ -30,10 +26,9 @@ public class Generator : MonoBehaviour
 	// returns an array of excercises in random order
 	public void CreateWorkout ()
 	{
-		//warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup);
 		warmupExercises = GenerateFromList (Exercises.warmupExercises, userPrefs.warmup, SegmentType.Warmup);
 		exercises = GenerateFromList (Exercises.exercises, userPrefs.duration, SegmentType.Workout);
-		cooldownExercises = new Exercise [0];
+		cooldownExercises = GenerateFromList (Exercises.cooldownExercises, userPrefs.cooldown, SegmentType.Cooldown);
 	}
 
 
@@ -44,21 +39,28 @@ public class Generator : MonoBehaviour
 		int timeLeft =  length * 60; //converted to seconds
 
 		// shuffle
-
 		ShuffleArray (options);
 
 		// select all exercises that align with the user prefs
+		// use warmup alignment check
 		if (segmentType == SegmentType.Warmup) {
 			for (int n = 0; n < options.Length; n++) {
-				if (warmupAlignment (options [n])) {
+				if (warmupAlignment (options [n]))
 					exerciseSelection.Add (options [n]);
-				}
 			}
-		} else {
+		}
+		// use cooldown alignment check
+		else if (segmentType == SegmentType.Cooldown) {
 			for (int n = 0; n < options.Length; n++) {
-				if (alignment (options [n])) {
+				if (cooldownAlignment (options [n]))
 					exerciseSelection.Add (options [n]);
-				}
+			}
+		}
+		// use regular alignment check
+		else {
+			for (int n = 0; n < options.Length; n++) {
+				if (alignment (options [n]))
+					exerciseSelection.Add (options [n]);
 			}
 		}
 		
@@ -88,7 +90,7 @@ public class Generator : MonoBehaviour
 	// returns true if exercise matches the user prefs
 	public bool alignment(Exercise exercise)
 	{
-		float randNum = UnityEngine.Random.value;
+		float randNum = Random.value;
 		int diff1 = userPrefs.difficulty;
 		int diff2 = exercise.difficulty;
 
@@ -143,21 +145,16 @@ public class Generator : MonoBehaviour
 
 	public bool warmupAlignment (Exercise exercise)
 	{
-		float randNum = UnityEngine.Random.value;
+		float randNum;
 		int diff1 = userPrefs.difficulty;
 		int diff2 = exercise.difficulty;
 
-		
-		if (diff1 == 4) { //there are no challenging warmups
+		if (diff1 >= 4) { //there are no "challenging" warmups
 			diff1 = 3;
 		}
 
-		// check difficulty -- difficulty doesn't really matter for warmup?
-		/*if (!(diff2 == 5 || diff1 == diff2 || 
-			(randNum < 0.6 && (diff2 == diff1 - 1 || diff2 == diff1 + 1)))) {
-			return false; // incorrect difficulty
-		}*/
-
+		// check difficulty -- difficulty doesn't really matter as
+		// much for warmup so more lenient about it
 		if (!(diff2 <= diff1 + 1 && diff2 >= diff1 - 2)) {
 			return false;
 		}
@@ -168,8 +165,27 @@ public class Generator : MonoBehaviour
 			(userPrefs.lowerFocus && Contains (exercise.bodyFocus, BodyFocus.Lower)))) {
 
 			// small chance to just include it anyway
-			randNum = UnityEngine.Random.value;
-			if (randNum < 0.1)
+			randNum = Random.value;
+			if (randNum > 0.1)
+				return false;
+		}
+
+		return true;
+	}
+
+	public bool cooldownAlignment (Exercise exercise)
+	{
+		float randNum;
+		//difficulty doesn't really matter for cooldown so don't check it
+
+		// check for correct body focus, at least one must match
+		if (!((userPrefs.upperFocus && Contains (exercise.bodyFocus, BodyFocus.Upper)) ||
+			(userPrefs.middleFocus && Contains (exercise.bodyFocus, BodyFocus.Middle)) ||
+			(userPrefs.lowerFocus && Contains (exercise.bodyFocus, BodyFocus.Lower)))) {
+
+			// small chance to just include it anyway
+			randNum = Random.value;
+			if (randNum > 0.2)
 				return false;
 		}
 
@@ -181,7 +197,7 @@ public class Generator : MonoBehaviour
 		int n = array.Length;
 		for (int i = 0; i < n; i++) {
 			// Pick a new index higher than current for each item in the array
-			int r = i + UnityEngine.Random.Range (0, n - i);
+			int r = i + Random.Range (0, n - i);
 
 			// Swap item into new spot
 			T t = array [r];
@@ -196,7 +212,6 @@ public class Generator : MonoBehaviour
 	{
 		string str = "";
 
-		
 		str += arrayToString (warmupExercises, "Warmup");
 		str += arrayToString (exercises, "Main Workout");
 		str += arrayToString (cooldownExercises, "Cooldown");
@@ -214,7 +229,6 @@ public class Generator : MonoBehaviour
 			return str;
 		}
 
-		
 		int count = 1;
 		if (exs.Length > 0) {
 			str += "\n   " + title + ":\n";
