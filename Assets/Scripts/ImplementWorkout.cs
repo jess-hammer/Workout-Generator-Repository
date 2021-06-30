@@ -48,7 +48,6 @@ public class ImplementWorkout : MonoBehaviour
 		convertSegmentToParts (generator.cooldownExercises, queue);
 
 		queue.Enqueue (new ExercisePart ("Finish", 0, 0, "Finish"));
-		Debug.Log ("converted");
 		return queue;
 	}
 
@@ -82,18 +81,18 @@ public class ImplementWorkout : MonoBehaviour
 			return;
 		}
 
-
 		totalTimeLeft -= timer.timeLeft + 1;
 
+		if (isRest)
+			updateCurrent ();
+
 		isRest = true;
-		updateCurrent ();
 		playExercise ();
 
 	}
 
 	public void runWorkout ()
 	{
-
 		if (timer.isZero ()) {
 			// check if finished
 			if (exerciseQueue.Count == 0) {
@@ -160,6 +159,7 @@ public class ImplementWorkout : MonoBehaviour
 		textbox.text = "You're all finished, well done!";
 		nextTextbox.text = "";
 		timer.hideTimer ();
+		progressBar.currentPercent = 100;
 		anim.Play ("Finish");
 
 	}
@@ -177,7 +177,7 @@ public class ImplementWorkout : MonoBehaviour
 		progressBar.speed = 100/time;
 	}
 
-	public void goToNext()
+	/*public void goToNext()
 	{
 		if (exerciseQueue.Count == 0) {
 			isFinished = true;
@@ -214,6 +214,6 @@ public class ImplementWorkout : MonoBehaviour
 			timer.setTimer (currentEx.restlength / 60, currentEx.restlength % 60);
 			isRest = false;
 		}
-	}
+	}*/
 
 }
