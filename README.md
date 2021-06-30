@@ -1,15 +1,16 @@
 # Workout Routine Generator
 
 ### Introduction
+SEE THE APP ON ITCH HERE https://jess-hammer.itch.io/workout-routine-generator if it is too much of a hassle to clone and run in Unity. It's completely free and should just run in the browser!
+
 This app is:
 - made with Unity
-- still under development
 - designed to randomly generate a workout routine for you, depending on your preferences, that you can then follow along!
 
 It was developed in order to make exercising less repetitive and more interesting.
-You are currently able to adjust the duration, difficulty, whether you want a warmup or cooldown and which body area of focus you would like. Soon I plan to properly add options for equipment and exercise types (the dropdowns already exist but they currently don't do anything). If you aren't happy with the selection of excercises it picks, you can hit the refresh button to generate new ones. You can also copy the text version of the workout to the clipboard. 
+You are currently able to adjust the duration, difficulty, whether you want a warmup or cooldown and which body area of focus you would like. If you aren't happy with the selection of excercises it picks, you can hit the refresh button to generate new ones. You can also copy the text version of the workout to the clipboard. 
 
-Here is what it looks like in its current stage - I'm no designer but I tried my best! Credit goes to "Modern UI Pack" by Michsky for the individual sliders and dropdowns. However, all the exercise demonstrations were drawn by hand...it took a long time (there are over 100 exercises).
+Here is a preview of what it looks like - I'm no designer but I tried my best! Credit goes to "Modern UI Pack" by Michsky for the individual sliders and dropdowns. However, all the exercise demonstrations were drawn by hand...it took a long time (there are over 100 exercises).
  
 <p align="center">
   <img src="Images/ScreenV2 1.png" height="250" title="Main Screen">
@@ -38,5 +39,6 @@ The way the workouts are generated is quite simple. First, the exercises from th
 There are some features I originally had planned, but sadly, I probably won't get around to them after all since I want to focus on other projects too.
 - Import workout from text
 - More exercises with gym equipment - right now it's more home-workout focused but could be extended to be used in the gym
+- Similarly to this, properly add options for equipment and exercise types. The foundation for this was already implemented but there was not enough variety of exercises for it to be useful.
 
 Feel free to email me at jrhammer50@gmail.com if you have any enquiries. And, thanks for checking out my app! -Jess
